@@ -47,10 +47,11 @@
 </div>
 <?php wp_footer() ?>
 
+<?php if(is_page(__('nous-contacter', 'si-ogivedomain'))): ?>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIUSRZgHmKP2EZuGri6fYnJDYZ1RdjW3k&callback=initMap"
             async defer>
     </script>
-
+<?php endif ?>
 
 </body>
 </html>

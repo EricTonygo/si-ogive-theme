@@ -56,7 +56,7 @@ $(document).ready(function () {
     show_password_registration();
     hide_password_registration();
     show_password_confirm_registration();
-    hide_password_confirm_registration()
+    hide_password_confirm_registration();
     /* Navbar animation */
 //    $(window).bind('mousewheel', function (event) {
 //        if (event.originalEvent.wheelDelta >= 0) {
