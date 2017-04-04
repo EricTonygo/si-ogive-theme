@@ -175,17 +175,17 @@ $(document).ready(function () {
             .sidebar('attach events', '.toc.item')
             ;
 
-    $('.top-nav')
-            .visibility({
-                once: false,
-                onBottomPassed: function () {
-                    $('.fixed.menu').transition('fade in');
-                },
-                onBottomPassedReverse: function () {
-                    $('.fixed.menu').transition('fade out');
-                }
-            })
-            ;
+//    $('.top-nav')
+//            .visibility({
+//                once: false,
+//                onBottomPassed: function () {
+//                    $('.fixed.menu').transition('fade in');
+//                },
+//                onBottomPassedReverse: function () {
+//                    $('.fixed.menu').transition('fade out');
+//                }
+//            })
+//            ;
 
     // show dropdown on hover
     $('.ui.dropdown').dropdown({
@@ -197,6 +197,22 @@ $(document).ready(function () {
 
             })
             ;
+            
+    $('#sidebar_menu_item').click(function (e) {
+        e.preventDefault();
+        $(this).hide();
+        $('#remove_menu_item').show();
+        $('#remove_menu_item i').transition('jiggle');
+        $('#sub_main_menu').transition('slide down');
+    });
+    $('#remove_menu_item').click(function (e) {
+        e.preventDefault();
+        $(this).hide();
+        $('#sidebar_menu_item').show();
+        $('#sidebar_menu_item i').transition('jiggle');
+        $('#sub_main_menu').transition('slide down');
+    });
+            
 
     $('#contact_form.ui.form')
             .form({

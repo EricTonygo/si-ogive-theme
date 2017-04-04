@@ -7,7 +7,7 @@
                 <div class="ui list">
                     <a href="<?php echo home_url('/') ?>" class="item"><i class="chevron right icon"></i> <?php echo get_page_by_path(__('accueil', 'si-ogivedomain'))->post_title ?></a>
                     <a href="<?php echo get_permalink(get_page_by_path(__('notre-vision', 'si-ogivedomain'))) ?>" class="item"><i class="chevron right icon"></i> <?php echo get_page_by_path(__('notre-vision', 'si-ogivedomain'))->post_title ?></a>
-                    <a href="<?php echo home_url('/#areas_competence') ?>" class="item"><i class="chevron right icon"></i> DOMAINES DE COMPETENCE</a>
+                    <a href="<?php echo get_permalink(get_page_by_path(__('domaines-de-competence', 'si-ogivedomain'))) ?>" class="item"><i class="chevron right icon"></i> DOMAINES DE COMPETENCE</a>
                     <a href="<?php echo get_permalink(get_page_by_path(__('a-propos-de-si-ogive', 'si-ogivedomain'))) ?>" class="item"><i class="chevron right icon"></i> <?php echo get_page_by_path(__('a-propos-de-si-ogive', 'si-ogivedomain'))->post_title ?></a>
                     <a href="<?php echo get_permalink(get_page_by_path(__('nous-contacter', 'si-ogivedomain'))) ?>" class="item"><i class="chevron right icon"></i> <?php echo get_page_by_path(__('nous-contacter', 'si-ogivedomain'))->post_title ?></a>
                     <a href="<?php echo get_permalink(get_page_by_path(__('forums', 'si-ogivedomain'))) ?>" class="item"><i class="chevron right icon"></i><?php echo get_page_by_path(__('forums', 'si-ogivedomain'))->post_title ?></a>

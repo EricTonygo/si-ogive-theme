@@ -18,26 +18,26 @@ body, div, p, a, h1, h2, h3, span, input, textarea label{
   top: -75px;
 }
 .ui.fixed.top.menu .item {
-  color: #aa785f;
-  padding: 20px 30px;
-  text-transform: uppercase;
+  color: #0f0f0f;
+  /*padding: 20px 30px;
+  text-transform: uppercase;*/
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
 .ui.fixed.top.menu .item.active {
-  background-color: #aa785f;
-  color: #f7fdff;
+  /*background-color: #aa785f;*/
+  /*color: #f7fdff;*/
   /*font-size: 20px;*/
 }
-.ui.fixed.top.menu .center.menu .item.logo:hover {
+/*.ui.fixed.top.menu .center.menu .item.logo:hover {
   background-color: #aa785f;
-}
+}*/
 
-.ui.fixed.top.menu .center.menu .item:hover {
+/*.ui.fixed.top.menu .center.menu .item:hover {
   background-color: #aa785f;
   color: #f7fdff;
-}
+}*/
 
 
 .ui.fixed.top.menu .item:before {
@@ -86,10 +86,10 @@ body, div, p, a, h1, h2, h3, span, input, textarea label{
 .ui.vertical.menu.collapse .item.logo {
   display: none;
 }
-.ui.vertical.menu.collapse .item:hover {
+/*.ui.vertical.menu.collapse .item:hover {
   background-color: #aa785f;
   color: #f7fdff;
-}
+}*/
 .ui.vertical.menu.collapse .item:first-child {
   border-top-right-radius: 0px;
   border-top-left-radius: 0px;
@@ -263,13 +263,13 @@ h1 {
 }
 
 .ui.fixed.top.menu .ui.dropdown.top.pointing.item .menu{
-    top: 2.8em;
+    top: 3.5em;
 }
 
-.ui.dropdown.top.left.pointing.item .menu .ui.item:hover{
+/*.ui.dropdown.top.left.pointing.item .menu .ui.item:hover{
     background-color: #aa785f!important;
     color: white!important;
-}
+}*/
 
 .content_page p, li{
     /*text-align: justify;*/
@@ -357,4 +357,44 @@ h2{
 
 .ui.message{
     border-radius: 0!important;
+}
+
+.ui.action.input input{
+    border-radius: 0;
+}
+
+ .ui.action.input .ui.button:last-child{
+    border-radius: 0;
+}
+
+#logo>img{
+    margin-top: 0.4em;
+}
+
+
+#sub_main_menu.ui.fixed.menu{
+    top: 4.89em;
+    background-color: rgba(0, 0, 0, 0.94);
+}
+#sub_main_menu.ui.fixed.menu .ui.container{
+    padding: 2em;
+}
+
+#sub_main_menu.ui.fixed.menu .ui.container #menu_grid_column_container{
+    width: 100%;
+}
+
+#sub_main_menu.ui.fixed.menu .ui.container #menu_grid_column_container .column .ui.link.list .item{
+    color: white;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+#remove_menu_item{
+    color: white;
+    background-color: rgba(0, 0, 0, 0.94);
+}
+
+.hidden.menu {
+    display: none;
 }
