@@ -52,9 +52,9 @@ function si_ogive_scripts() {
 //        wp_enqueue_script('datetimepicker_js');
 //        wp_enqueue_style('datetimepicker_css');
         wp_enqueue_script('hideShowPassword_js');
-//        if(is_page(__('nous-contacter', 'si-ogivedomain'))){
-//            wp_enqueue_script('my_google_map_js');
-//        }
+        if(is_page(__('nous-contacter', 'si-ogivedomain'))){
+            wp_enqueue_script('my_google_map_js');
+        }
         
 }
 

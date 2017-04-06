@@ -5,7 +5,7 @@
             <div class="column">
                 <div class="ui header"><?php echo __("Plan du site", 'si-ogivedomain') ?></div>
                 <div class="ui list">
-                    <a href="<?php echo home_url('/') ?>" class="item"><i class="chevron right icon"></i> <?php echo get_page_by_path(__('accueil', 'si-ogivedomain'))->post_title ?></a>
+                    <a href="<?php echo home_url('/') ?>" class="item"><i class="chevron right icon"></i> <?php echo __("ACCUEIL", "si-ogivedomain"); ?></a>
                     <a href="<?php echo get_permalink(get_page_by_path(__('notre-vision', 'si-ogivedomain'))) ?>" class="item"><i class="chevron right icon"></i> <?php echo get_page_by_path(__('notre-vision', 'si-ogivedomain'))->post_title ?></a>
                     <a href="<?php echo get_permalink(get_page_by_path(__('domaines-de-competence', 'si-ogivedomain'))) ?>" class="item"><i class="chevron right icon"></i> DOMAINES DE COMPETENCE</a>
                     <a href="<?php echo get_permalink(get_page_by_path(__('a-propos-de-si-ogive', 'si-ogivedomain'))) ?>" class="item"><i class="chevron right icon"></i> <?php echo get_page_by_path(__('a-propos-de-si-ogive', 'si-ogivedomain'))->post_title ?></a>
@@ -26,12 +26,16 @@
                 <div class="ui header"><?php echo __("AUTRES SERVICES", 'si-ogivedomain') ?></div>
                 <div class="ui list">
                     <?php
-                    wp_reset_postdata();
-                    query_posts(array('post_type' => 'service', 'post_per_page' => -1, "post_status" => 'publish', 'orderby' => 'post_date', 'order' => 'ASC'));
-                    while (have_posts()): the_post()
-                        ?>
-                        <a href="<?php the_permalink() ?>" class="item"><i class="chevron right icon"></i> <?php the_title() ?></a>
-                    <?php endwhile; ?> 
+                    $services = new WP_Query(array('post_type' => 'service', 'post_per_page' => -1, "post_status" => 'publish', 'orderby' => 'post_date', 'order' => 'ASC'));
+                    if ($services->have_posts()) {
+                        while ($services->have_posts()): $services->the_post();
+                            ?>
+                            <a href="<?php the_permalink() ?>" class="item"><i class="chevron right icon"></i> <?php the_title() ?></a>
+                        <?php endwhile; ?> 
+                        <?php
+                        wp_reset_postdata();
+                    }
+                    ?>
                 </div>
             </div>
             <!--            <div class="column">
@@ -47,7 +51,7 @@
 </div>
 <?php wp_footer() ?>
 
-<?php if(is_page(__('nous-contacter', 'si-ogivedomain'))): ?>
+<?php if (is_page(__('nous-contacter', 'si-ogivedomain'))): ?>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIUSRZgHmKP2EZuGri6fYnJDYZ1RdjW3k&callback=initMap"
             async defer>
     </script>

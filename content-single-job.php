@@ -3,8 +3,35 @@
     <div class="ui stackable doubling grid">
         <!-- Middle Content -->
         <div class="twelve wide column">
-            <div id='job_details' class="ui fluid card" <?php if(isset($_SESSION['error_message'])): ?> style="display: none"<?php endif ?>>
+            <?php if (isset($_SESSION['success_message'])): ?>
+                <div  class="ui success message">
+                    <div class="content">
+                        <div class="header" style="font-weight: normal;"> 
+                            <?php
+                            if (isset($_SESSION['success_message'])) {
+                                echo $_SESSION['success_message'];
+                            }
+                            ?>
+                        </div>
+                    </div>
+                </div>
+            <?php endif ?>
+            <?php if (isset($_SESSION['error_message'])): ?>
+                <div class="ui error message">
+                    <div class="content">
+                        <div class="header" style="font-weight: normal;"> 
+                            <?php
+                            if (isset($_SESSION['error_message'])) {
+                                echo $_SESSION['error_message'];
+                            }
+                            ?> 
+                        </div>
+                    </div>
+                </div>
+            <?php endif ?>
+            <div id='job_details' class="ui fluid card" <?php if (isset($_SESSION['error_message'])): ?> style="display: none"<?php endif ?>>
                 <div class="ui content">
+
                     <h2 class="header" style="text-transform: uppercase"><?php the_title() ?></h2>
                     <div class="meta">
                         <span><i class="calendar icon"></i>Publiée le <?php echo get_the_date() ?> à <?php echo get_the_date('H') ?>h<?php echo get_the_date('i') ?> </span>
@@ -32,7 +59,7 @@
                     <button id="apply_job" class="ui yellow button">POSTULER MAINTENANT</button>
                 </div>
             </div>
-            <div id='application_job' class="ui fluid card" <?php if(!isset($_SESSION['error_message'])): ?> style="display: none"<?php endif ?>>
+            <div id='application_job' class="ui fluid card" <?php if (!isset($_SESSION['error_message'])): ?> style="display: none"<?php endif ?>>
                 <div class="ui content">
                     <h2 class="header" style="text-transform: uppercase;">Candidature à l'offre d'emploi : <?php the_title() ?></h2>
                 </div>
@@ -43,7 +70,7 @@
                                 <label for="firstname">Prénom</label>
                             </div>
                             <div class="twelve wide field">
-                                <input id="firstname" placeholder="Saisissez votre prénom" name="firstname" type="text">
+                                <input id="firstname" placeholder="Saisissez votre prénom" name="firstname" type="text" value="<?php echo $firstname; ?>">
                             </div>
                         </div>
                         <div class="two fields">
@@ -51,7 +78,7 @@
                                 <label for="lastname">Nom <span>*</span></label>
                             </div>
                             <div class="twelve wide field">
-                                <input id="lastname" placeholder="Saisissez votre nom" name="lastname" type="text">
+                                <input id="lastname" placeholder="Saisissez votre nom" name="lastname" type="text" value="<?php echo $lastname; ?>">
                             </div>
                         </div>
                         <div class="two fields">
@@ -59,7 +86,7 @@
                                 <label for="email">Email <span>*</span></label>
                             </div>
                             <div class="twelve wide field">
-                                <input id="email" placeholder="Saisissez votre email" name="email" type="email">
+                                <input id="email" placeholder="Saisissez votre email" name="email" type="email" value="<?php echo $email; ?>">
                             </div>
                         </div>
                         <div class="two fields">
@@ -67,7 +94,7 @@
                                 <label for="phone">Téléphone <span>*</span></label>
                             </div>
                             <div class="twelve wide field">
-                                <input id="phone" placeholder="Saisissez votre numéro de téléphone" name="phone" type="text">
+                                <input id="phone" placeholder="Saisissez votre numéro de téléphone" name="phone" type="text" value="<?php echo $phone; ?>">
                             </div>
                         </div>
                         <div class="two fields">
@@ -75,13 +102,13 @@
                                 <label for="address">Adresse</label>
                             </div>
                             <div class="twelve wide field">
-                                <input id="address" placeholder="Saisissez votre adresse" name="address" type="text">
+                                <input id="address" placeholder="Saisissez votre adresse" name="address" type="text" value="<?php echo $address; ?>">
                             </div>
                         </div>
                         <?php
 //                                    $countries_tmp = get_country_list();
 //                                    var_dump($countries_tmp[0]);
-                                    ?>
+                        ?>
                         <div class="two fields">
                             <div class="four wide field">
                                 <label for="country">Pays</label>
@@ -103,7 +130,7 @@
                                 <label for="qualifications">Qualifications</label>
                             </div>
                             <div class="twelve wide field">
-                                <textarea id="qualification" name="qualifications" ></textarea>
+                                <textarea id="qualification" name="qualifications" > <?php echo $qualifications; ?></textarea>
                             </div>
                         </div>
 
@@ -112,7 +139,7 @@
                                 <label for="lastdiploma">Dernier Diplôme</label>
                             </div>
                             <div class="twelve wide field">
-                                <input id="lastdiploma" placeholder="Saisissez le nome de votre dernier diplôme" name="lastdiploma" type="text">
+                                <input id="lastdiploma" placeholder="Saisissez le nome de votre dernier diplôme" name="lastdiploma" type="text" value="<?php echo $lastdiploma; ?>">
                             </div>
                         </div>
 
@@ -121,7 +148,7 @@
                                 <label for="skills">Compétences</label>
                             </div>
                             <div class="twelve wide field">
-                                <textarea id="skills" name="skills" ></textarea>
+                                <textarea id="skills" name="skills" ><?php echo $skills; ?></textarea>
                             </div>
                         </div>
 
@@ -130,7 +157,7 @@
                                 <label for="experience">Expérience</label>
                             </div>
                             <div class="twelve wide field">
-                                <input id="experience" placeholder="Saisissez votre nombre d'années d'expérience" name="lastdiploma" type="text">
+                                <input id="experience" placeholder="Saisissez votre nombre d'années d'expérience" name="experience" type="text" value="<?php echo $experience; ?>">
                             </div>
                         </div>
 
@@ -142,12 +169,12 @@
                                 <input id="cv"  name="cv" type="file">
                             </div>
                         </div>
-                        
+
                         <div class="ui error message"></div>
 
                         <div align="right">
                             <button id="cancel_apply_job" class="ui grey button"> REVENIR A L'OFFRE D'EMPLOI</button>
-                            <button id="submit_message" class="ui yellow button"><i class="send icon"></i>ENVOYER VOTRE CANDIDATURE</button>
+                            <button id="submit_apply_job" class="ui yellow button"><i class="send icon"></i>ENVOYER VOTRE CANDIDATURE</button>
                         </div>
                     </form>
                 </div>

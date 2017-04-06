@@ -197,7 +197,7 @@ $(document).ready(function () {
 
             })
             ;
-            
+
     $('#sidebar_menu_item').click(function (e) {
         e.preventDefault();
         $(this).hide();
@@ -212,7 +212,7 @@ $(document).ready(function () {
         $('#sidebar_menu_item i').transition('jiggle');
         $('#sub_main_menu').transition('slide down');
     });
-            
+
 
     $('#contact_form.ui.form')
             .form({
@@ -371,12 +371,29 @@ $(document).ready(function () {
                 inline: false,
                 on: 'change',
                 onSuccess: function (event, fields) {
-                    $('#apply_job_form.ui.form').addClass('loading');
-                    $('#submit_apply_job').addClass('disabled');
-                    $('#apply_job_form.ui.form').submit();
+                    $("#apply_job_form.ui.form").submit();
                 }
             }
             );
+
+    $("#apply_job_form.ui.form").bind("keypress", function (e) {
+        if (e.keyCode === 13) {
+            return false;
+        }
+    });
+
+    $('#submit_apply_job').click(function (e) {
+        $("#apply_job_form.ui.form").addClass('loading');
+    });
+
+//    $("#apply_job_form.ui.form").submit(function (e) {
+//        if (e.keyCode == 13) {
+//            e.preventDefault();
+//            return false;
+//        } else {
+//            $(this).addClass('loading');
+//        }
+//    });
 
 
     $('#register_account_form.ui.form')
@@ -430,7 +447,6 @@ $(document).ready(function () {
                 },
                 inline: true,
                 on: 'change'
-
             }
             );
 
@@ -509,10 +525,146 @@ $(document).ready(function () {
                             }
                         ]
                     }
-                },
+                }
                 //inline: true,
-                on: 'change'
+                //on: 'change'
             });
+
+    $('#submit_login_form').click(function (e) {
+        e.preventDefault();
+        $('#server_error_message').hide();
+        if ($('#login_form.ui.form').form('is valid')) {
+            $.ajax({
+                type: 'post',
+                url: $('#login_form.ui.form').attr('action'),
+                data: $('#login_form.ui.form').serialize(),
+                dataType: 'json',
+                beforeSend: function () {
+                    $('#login_form.ui.form').addClass('loading');
+                    $('#submit_login_form').addClass('disabled');
+                    $('#message_error').hide();
+                },
+                statusCode: {
+                    500: function (xhr) {
+                        $('#login_form.ui.form').removeClass('loading');
+                        $('#message_error>.header').html("Internal server error");
+                        $('#message_error').show();
+                    },
+                    400: function (response, textStatus, jqXHR) {
+                        $('#login_form.ui.form').removeClass('loading');
+                        $('#submit_login_form').removeClass('disabled');
+                        $('#message_error>.header').html("Echec de la validation");
+                    }
+                },
+                success: function (response, textStatus, jqXHR) {
+                    if (response.success === true) {
+                        //$('#login_form.ui.form').submit();
+                        window.location.reload();
+                    } else if (response.success === false) {
+                        $('#login_form.ui.form').removeClass('loading');
+                        $('#submit_login_form').removeClass('disabled');
+                        $('#message_error>.header').html(response.data.message);
+                        $('#message_error').show();
+                    } else {
+                        $('#login_form1.ui.form').removeClass('loading');
+                        $('#submit_login_form').removeClass('disabled');
+                        $('#message_error>.header').html("Internal server error");
+                        $('#message_error').show();
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $('#login_form.ui.form').removeClass('loading');
+                    $('#submit_login_form').removeClass('disabled');
+                    $('#message_error').show();
+                }
+            });
+        }
+    });
+
+    $('#login_form2.ui.form')
+            .form({
+                fields: {
+                    username: {
+                        identifier: '_username',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: 'Veuillez saisir votre login'
+                            }
+                        ]
+                    },
+                    last_name: {
+                        identifier: '_password',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: 'Veuillez saisir votre mot de passe'
+                            }
+                        ]
+                    }
+                }
+                //inline: true,
+                //on: 'change'
+            });
+
+    $('#submit_login_form2').click(function (e) {
+        e.preventDefault();
+        $('#server_error_message').hide();
+        if ($('#login_form2.ui.form').form('is valid')) {
+            $.ajax({
+                type: 'post',
+                url: $('#login_form2.ui.form').attr('action'),
+                data: $('#login_form2.ui.form').serialize(),
+                dataType: 'json',
+                beforeSend: function () {
+                    $('#login_form2.ui.form').addClass('loading');
+                    $('#submit_login_form2').addClass('disabled');
+                    $('#server_error_message2').hide();
+                    $('#error_name_message2').hide();
+                },
+                statusCode: {
+                    500: function (xhr) {
+                        $('#login_form2.ui.form').removeClass('loading');
+                        $('#submit_login_form2').removeClass('disabled');
+                        $('#server_error_message2').show();
+                    },
+                    400: function (response, textStatus, jqXHR) {
+                        $('#login_form2.ui.form').removeClass('loading');
+                        $('#submit_login_form2').removeClass('disabled');
+                        $('#error_name_header2').html("Echec de la validation");
+                        $('#error_name_message2').show();
+                    }
+                },
+                success: function (response, textStatus, jqXHR) {
+                    if (response.success === true) {
+                        $('#login_form2.ui.form').submit();
+                    } else if (response.success === false) {
+                        $('#login_form2.ui.form').removeClass('loading');
+                        $('#submit_login_form2').removeClass('disabled');
+                        $('#error_name_list2').html('<li>' + response.data.message + '</li>');
+                        $('#error_name_message2').show();
+                    } else {
+                        $('#login_form2.ui.form').removeClass('loading');
+                        $('#submit_login_form2').removeClass('disabled');
+                        $('#error_name_header2').html("Internal server error");
+                        $('#error_name_message2').show();
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $('#login_form2.ui.form').removeClass('loading');
+                    $('#submit_login_form2').removeClass('disabled');
+                    $('#server_error_message2').show();
+                }
+            });
+        }
+    });
+
+    $('#search_input_top_form').submit(function () {
+        if ($('#search_input_top_form input[name="s"]').val() === "") {
+            return false;
+        }
+        $('#submit_search_input_top').addClass('loading');
+    });
 
 });
 
