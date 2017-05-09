@@ -33,11 +33,11 @@
                 $detail_files_ids = get_post_meta(get_the_ID(), 'detail-files-IDs', true);
                 if (is_array($detail_files_ids) && count($detail_files_ids) > 0):
                     ?>
-                    <div align="right">
+                    <div >
                         <?php
                         foreach ($detail_files_ids as $attachement_id):
                             ?>
-                        <a  href="<?php echo wp_make_link_relative(wp_get_attachment_url($attachement_id)); ?>" class="ui yellow labeled icon button"> <i class="download icon"></i><?php echo basename(get_attached_file($attachement_id)); ?> </a>
+                        <a  href="<?php echo wp_make_link_relative(wp_get_attachment_url($attachement_id)); ?>" class="ui yellow labeled icon button procedure_detail_link"> <i class="download icon"></i><?php echo basename(get_attached_file($attachement_id)); ?> </a>
                         <?php endforeach; ?>
                     </div>
                 <?php endif; ?>
@@ -100,13 +100,13 @@
                 wp_reset_postdata();
                 ?>
             </div>
-            <div class="ui fluid vertical menu moderns">
+<!--            <div class="ui fluid vertical menu moderns">
                 <div class="item" style="text-transform: uppercase;"><strong><?php echo __('Nos coordonnées', 'siogivedomain') ?></strong></div>
                 <div  class="item"><i class="mail outline icon"></i> Siège social Yaoundé BP: 5253</div>
                 <div  class="item"><i class="marker icon"></i> Situé à la Nouvelle route Bastos face Ariane TV Rue N°1839</div>
                 <div  class="item"><i class="call icon"></i> (+237) 243804388 / 243803895</div>
                 <a href="mailto:<?php echo get_bloginfo('admin_email'); ?>" class="item"><i class="mail icon"></i> <?php echo get_bloginfo('admin_email'); ?></a>
-            </div>
+            </div>-->
 
         </div>
     </div>

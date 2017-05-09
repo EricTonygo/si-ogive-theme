@@ -74,6 +74,10 @@ body, div, p, a, h1, h2, h3, span, input, textarea label{
     #register_bloc_login_page{
         margin-top: 0!important;
     }
+    
+    .procedure_detail_link{
+        margin-bottom: 1em;
+    }
 }
 .ui.vertical.menu.collapse {
     position: fixed;

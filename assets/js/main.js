@@ -50,6 +50,7 @@ $(document).ready(function () {
 
     if (window.matchMedia("(max-width: 800px)").matches) {
         $('.ui.form .ui.button').addClass("fluid");
+        $('.ui.button.procedure_detail_link').addClass('fluid');
         var view_password = 0;
         $('i.unhide.link.icon').click(function (e) {
             e.preventDefault();
@@ -64,6 +65,8 @@ $(document).ready(function () {
             }
         });
 
+    }else{
+        $('.ui.button.procedure_detail_link').removeClass('fluid');
     }
 
     /* Scroll Event*/
