@@ -18,7 +18,7 @@
 <!-- Content area -->
 <div id="vision" class="section one">
     <div class="ui container">
-        <h1><?php echo __("NOTRE VISION", 'si-ogivedomain') ?></h1>
+        <h1><?php echo __("NOTRE VISION", 'siogivedomain') ?></h1>
         <p style="text-align: center; font-size: 14pt">
             <?php echo Meta::get(get_the_ID(), 'our-vision-home') ?>
         </p>
@@ -27,7 +27,7 @@
 <div class="ui divider"></div>
 <div id="areas_competence" class="section two">
     <div class="ui container">
-        <h1><?php echo __("DOMAINES DE COMPETENCE", 'si-ogivedomain') ?></h1>
+        <h1><?php echo __("DOMAINES DE COMPETENCE", 'siogivedomain') ?></h1>
         <div class="ui three column stackable doubling grid center ">
             <?php
             $areas_expertise = new WP_Query(array('post_type' => 'area-expertise', 'post_per_page' => -1, "post_status" => 'publish', 'orderby' => 'post_date', 'order' => 'ASC'));
@@ -37,9 +37,14 @@
                 <div class="column">
                     <div class="ui segment">
                         <h2 class="ui icon header">
-                            <i class="settings icon"></i>
+                            <!--<i class="settings icon"></i>-->
+                            <?php if ( has_post_thumbnail() ): ?>
+                            <a class="ui small image" href="<?php the_permalink() ?>">
+                            <img src="<?php the_post_thumbnail_url( 'full' ); ?>">
+                            </a>
+                            <?php endif ?>
                             <div class="content content_area_expertise">
-                                <a href="<?php the_permalink() ?>"><?php the_title() ?></a>
+                                <a class="area_expertise_link" href="<?php the_permalink() ?>"><?php the_title() ?></a>
                             </div>
                         </h2>
                     </div>
@@ -59,7 +64,7 @@
 <div class="ui hidden divider"></div>
 <div id="our-service" class="section two">
     <div class="ui container">
-        <h1><?php echo __("AUTRES SERVICES", 'si-ogivedomain') ?></h1>
+        <h1><?php echo __("AUTRES SERVICES", 'siogivedomain') ?></h1>
         <div class="ui three column stackable doubling grid center aligned">
             <?php            
             $services = new WP_Query(array('post_type' => 'service', 'post_per_page' => -1, "post_status" => 'publish', 'orderby' => 'post_date', 'order' => 'ASC'));
@@ -69,9 +74,14 @@
                 <div class="column">
                     <div class="ui segment">
                         <h2 class="ui icon header">
-                            <i class="talk icon"></i>
+                            <!--<i class="talk icon"></i>-->
+                            <?php if ( has_post_thumbnail() ): ?>
+                            <a class="ui small image" href="<?php the_permalink() ?>">
+                            <img src="<?php the_post_thumbnail_url( 'full' ); ?>">
+                            </a>
+                            <?php endif ?>
                             <div class="content content_area_expertise">
-                                <a href="<?php the_permalink() ?>"><?php the_title() ?></a>
+                                <a class="service_link" href="<?php the_permalink() ?>"><?php the_title() ?></a>
                             </div>
                         </h2>
                     </div>

@@ -12,7 +12,7 @@
                             <div class="content">
                                 <div id='menu_grid_column_container' class="ui two column stackable relaxed equal divided height grid">
                                     <div class="column">
-                                        
+
                                         <form id="login_form2"  method="POST" class="ui form login_form" action="<?php echo get_permalink(get_page_by_path(__('connexion', 'gpdealdomain'))) ?>" style="margin-bottom: 1em" autocomplete="off" onkeydown="submit_modal_login_form();">
                                             <div class="field">
                                                 <label>Email ou pseudo <span style="color: red;">*</span></label>
@@ -29,6 +29,9 @@
                                                 </div>
                                             </div>
                                             <input type="hidden" name='no_redirect' value="true" >
+                                            <?php if (isset($_SESSION['redirect_to'])): ?>
+                                                <input type="hidden" name='redirect_to' value="<?php echo $_SESSION['redirect_to']; unset($_SESSION['redirect_to']);  ?>" >
+                                            <?php endif ?>
                                             <div class="inline field">
                                                 <div class="ui checkbox">
                                                     <input type="checkbox" name="_remember" value="true">
@@ -36,9 +39,9 @@
                                                 </div>
                                             </div>
                                             <div class="field">
-                                                <div id="server_error_message2" class="ui negative message" style="display:none">
+                                                <div id="server_error_message2" class="ui negative message" <?php if (!isset($_SESSION['signin_error'])): ?>style="display:none" <?php endif ?>>
                                                     <i class="close icon"></i>
-                                                    <div id="server_error_content2" class="header">Internal server error</div>
+                                                    <div id="server_error_content2" class="header"><?php if (isset($_SESSION['signin_error'])){ echo $_SESSION['signin_error']; } ?></div>
                                                 </div>
                                                 <div id="error_name_message2" class="ui error message" style="display: none">
                                                     <i class="close icon"></i>
@@ -57,12 +60,12 @@
                                         </form>
                                     </div>
                                     <div class="column">
-                                        <div class="ui form" style="margin-top: 5em;">
+                                        <div id="register_bloc_login_page" class="ui form">
                                             <div class="field" align="center">
-                                                <span><?php echo __("Vous n'avez pas encore un compte", "gpdealdomain") ?> ? </span>
+                                                <span><?php echo __("Vous n'avez pas encore un compte", "siogivedomain") ?> ? </span>
                                             </div>
                                             <div class="field center aligned">
-                                                <a href="<?php echo get_permalink(get_page_by_path(__('inscription', 'gpdealdomain'))); ?>" class="ui blue fluid button"><?php echo __("S'inscrire", "gpdealdomain") ?></a>
+                                                <a href="<?php echo get_permalink(get_page_by_path(__('inscription', 'siogive'))); ?>" class="ui blue fluid button"><?php echo __("S'inscrire", "gpdealdomain") ?></a>
                                             </div>
                                         </div>
                                     </div>

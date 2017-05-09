@@ -3,7 +3,7 @@
     <div class="ui stackable grid">
         <!-- Middle Content -->
         <div class="wide column">
-            <div align="center">
+            <div >
                 <div class="ui divider horizontal"><h2 class="ui header">RESULTATS DE LA RECHERCHE</h2></div>
                 <?php
                 if (have_posts()):
@@ -20,9 +20,9 @@
                                     <div class="description" align="justify">
                                         <p><?php the_excerpt() ?></p>
                                     </div>
-<!--                                    <div class="extra">
-                                        <a href="<?php the_permalink() ?>" class="ui yellow right floated button">Détails de l'offre</a>
-                                    </div>-->
+                                    <!--                                    <div class="extra">
+                                                                            <a href="<?php the_permalink() ?>" class="ui yellow right floated button">Détails de l'offre</a>
+                                                                        </div>-->
                                 </div>
                             </div>
                             <div class="ui divider"></div>
@@ -31,16 +31,26 @@
                         wp_reset_postdata();
                         ?>
                     </div>
+                <?php else: ?>
+                    <div class="">
+                        <div class="ui warning message">
+                            <div class="content">
+                                <div class="header" style="font-weight: normal;">
+                                    Aucun résultat correspondant à vos termes de recherche.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 <?php endif ?>              
-<!--                <div class="ui right floated pagination menu">
-                    <a class="icon item">
-                        <i class="left chevron icon"></i>
-                    </a>
-
-                    <a class="icon item">
-                        <i class="right chevron icon"></i>
-                    </a>
-                </div>-->
+                <!--                <div class="ui right floated pagination menu">
+                                    <a class="icon item">
+                                        <i class="left chevron icon"></i>
+                                    </a>
+                
+                                    <a class="icon item">
+                                        <i class="right chevron icon"></i>
+                                    </a>
+                                </div>-->
             </div>
         </div>
     </div>

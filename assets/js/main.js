@@ -1,87 +1,70 @@
-function show_password_login() {
-    $('.unhide.link.icon.show_hide_password_login').click(function () {
-        $(this).parents('.ui.form.login_form:first-child').find('input[name="_password"]').showPassword();
-        $(this).removeClass('unhide');
-        $(this).addClass('hide');
-        hide_password_login();
-    });
-}
-function hide_password_login() {
-    $('.hide.link.icon.show_hide_password_login').click(function () {
-        $(this).parents('.ui.form.login_form:first-child').find('input[name="_password"]').hidePassword();
-        $(this).removeClass('hide');
-        $(this).addClass('unhide');
-        show_password_login();
-    });
-}
-
-function show_password_registration() {
-    $('#show_hide_password.unhide.link.icon').click(function () {
-        $('#register_account_form.ui.form input[name="password"]').showPassword();
-        $(this).removeClass('unhide');
-        $(this).addClass('hide');
-        hide_password_registration();
-    });
-}
-
-function hide_password_registration() {
-    $('#show_hide_password.hide.link.icon').click(function () {
-        $('#register_account_form.ui.form input[name="password"]').hidePassword();
-        $(this).removeClass('hide');
-        $(this).addClass('unhide');
-        show_password_registration();
-    });
-}
-
-function show_password_confirm_registration() {
-    $('#show_hide_password_confirm.unhide.link.icon').click(function () {
-        $('#register_account_form.ui.form input[name="password_confirm"]').showPassword();
-        $(this).removeClass('unhide');
-        $(this).addClass('hide');
-        hide_password_confirm_registration();
-    });
-}
-
-function hide_password_confirm_registration() {
-    $('#show_hide_password_confirm.hide.link.icon').click(function () {
-        $('#register_account_form.ui.form input[name="password_confirm"]').hidePassword();
-        $(this).removeClass('hide');
-        $(this).addClass('unhide');
-        show_password_confirm_registration();
-    });
-}
 $(document).ready(function () {
-    show_password_login();
-    hide_password_login();
-    show_password_registration();
-    hide_password_registration();
-    show_password_confirm_registration();
-    hide_password_confirm_registration();
-    /* Navbar animation */
-//    $(window).bind('mousewheel', function (event) {
-//        if (event.originalEvent.wheelDelta >= 0) {
-//            $('.fixed.top.menu').removeClass('slide up');
-//        } else {
-//            $('.fixed.top.menu').addClass('slide up');
-//            $('.vertical.menu.collapse').removeClass('slide down');
-//        }
-//
-//    });
 
-    /* Back to top fade */
-//    $(window).scroll(function (event) {
-//        var scroll = $(window).scrollTop();
-//        $('#toTop').hide();
-//        if (scroll > 200) {
-//            $('#toTop').show();
-//        } else {
-//            $('#toTop').hide();
-//        }
-//
-//        if (scroll == 0) {
-//            $('.fixed.top.menu').removeClass('slide up');
-//        }
-//    });
+    $('input.clearable').on("change paste keyup", function (e) {
+        var myclass = $(this).attr('id');
+        if ($(this).val() !== "") {
+            $('i.remove.link.icon.' + myclass).show();
+        } else {
+            $('i.remove.link.icon.' + myclass).hide();
+        }
+    });
+
+    $('input.clearable').on("focusout", function (e) {
+        var myclass = $(this).attr('id');
+        if ($(this).val() === "") {
+            $('i.remove.link.icon.' + myclass).hide();
+        }
+    });
+
+    $('i.remove.link.icon').click(function (e) {
+        var myid = $(this).attr('clearable_id');
+        $('#' + myid).val("");
+        $('i.remove.link.icon.' + myid).hide();
+    });
+
+    $('input.visible_password').on("change paste keyup", function (e) {
+        var myclass = $(this).attr('id');
+        if ($(this).val() !== "") {
+            $('i.unhide.link.icon.' + myclass).show();
+        } else {
+            $('i.unhide.link.icon.' + myclass).hide();
+        }
+    });
+
+    $('input.visible_password').on("focusout", function (e) {
+        var myclass = $(this).attr('id');
+        if ($(this).val() === "") {
+            $('i.unhide.link.icon.' + myclass).hide();
+        }
+    });
+
+    $('i.unhide.link.icon')
+            .mouseup(function () {
+                var myid = $(this).attr('input_password_id');
+                $('#' + myid).hidePassword();
+            })
+            .mousedown(function () {
+                var myid = $(this).attr('input_password_id');
+                $('#' + myid).showPassword();
+            });
+
+    if (window.matchMedia("(max-width: 800px)").matches) {
+        $('.ui.form .ui.button').addClass("fluid");
+        var view_password = 0;
+        $('i.unhide.link.icon').click(function (e) {
+            e.preventDefault();
+            if (view_password === 0) {
+                var myid = $(this).attr('input_password_id');
+                $('#' + myid).showPassword();
+                view_password = 1;
+            } else if (view_password === 1) {
+                var myid = $(this).attr('input_password_id');
+                $('#' + myid).hidePassword();
+                view_password = 0;
+            }
+        });
+
+    }
 
     /* Scroll Event*/
     $('a[data-slide="slide"]').on('click', function (e) {
@@ -459,7 +442,7 @@ $(document).ready(function () {
             $.ajax({
                 type: 'post',
                 url: $('#register_account_form.ui.form').attr('action'),
-                data: {'testunicity': 'yes', 'username': $('#register_account_form.ui.form input[name="username"]').val(), 'email': $('#register_account_form.ui.form input[name="email"]').val()},
+                data: $('#register_account_form.ui.form').serialize(),
                 dataType: 'json',
                 beforeSend: function () {
                     $('#block_recap').hide();
@@ -483,21 +466,27 @@ $(document).ready(function () {
                 },
                 success: function (response, textStatus, jqXHR) {
                     if (response.success === true) {
-                        $('#register_account_form.ui.form').submit();
+                        //$('#register_account_form.ui.form').submit();
+                        //window.location.reload();
+                        console.log(response);
+                        $('#message_success>div.header').html(response.data.message);
+                        $('#message_success').show();
                     } else if (response.success === false) {
                         $('#register_account_form.ui.form').removeClass('loading');
+                        $('#submit_register_account').removeClass('disabled');
                         $('#error_name_header').html("Echec de la validation");
                         $('#error_name_list').html('<li>' + response.data.message + '</li>');
                         $('#error_name_message').show();
                     } else {
-                        $("#register_account_form.ui.form input[name='save_account']").val('no');
                         $('#register_account_form.ui.form').removeClass('loading');
+                        $('#submit_register_account').removeClass('disabled');
                         $('#error_name_header').html("Internal server error");
                         $('#error_name_message').show();
                     }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     $('#register_account_form.ui.form').removeClass('loading');
+                    $('#submit_register_account').removeClass('disabled');
                     $('#server_error_message').show();
                 }
             });
@@ -546,13 +535,11 @@ $(document).ready(function () {
                 },
                 statusCode: {
                     500: function (xhr) {
-                        $('#login_form.ui.form').removeClass('loading');
                         $('#message_error>.header').html("Internal server error");
                         $('#message_error').show();
                     },
                     400: function (response, textStatus, jqXHR) {
-                        $('#login_form.ui.form').removeClass('loading');
-                        $('#submit_login_form').removeClass('disabled');
+
                         $('#message_error>.header').html("Echec de la validation");
                     }
                 },
@@ -610,52 +597,10 @@ $(document).ready(function () {
     $('#submit_login_form2').click(function (e) {
         e.preventDefault();
         $('#server_error_message').hide();
-        if ($('#login_form2.ui.form').form('is valid')) {
-            $.ajax({
-                type: 'post',
-                url: $('#login_form2.ui.form').attr('action'),
-                data: $('#login_form2.ui.form').serialize(),
-                dataType: 'json',
-                beforeSend: function () {
-                    $('#login_form2.ui.form').addClass('loading');
-                    $('#submit_login_form2').addClass('disabled');
-                    $('#server_error_message2').hide();
-                    $('#error_name_message2').hide();
-                },
-                statusCode: {
-                    500: function (xhr) {
-                        $('#login_form2.ui.form').removeClass('loading');
-                        $('#submit_login_form2').removeClass('disabled');
-                        $('#server_error_message2').show();
-                    },
-                    400: function (response, textStatus, jqXHR) {
-                        $('#login_form2.ui.form').removeClass('loading');
-                        $('#submit_login_form2').removeClass('disabled');
-                        $('#error_name_header2').html("Echec de la validation");
-                        $('#error_name_message2').show();
-                    }
-                },
-                success: function (response, textStatus, jqXHR) {
-                    if (response.success === true) {
-                        $('#login_form2.ui.form').submit();
-                    } else if (response.success === false) {
-                        $('#login_form2.ui.form').removeClass('loading');
-                        $('#submit_login_form2').removeClass('disabled');
-                        $('#error_name_list2').html('<li>' + response.data.message + '</li>');
-                        $('#error_name_message2').show();
-                    } else {
-                        $('#login_form2.ui.form').removeClass('loading');
-                        $('#submit_login_form2').removeClass('disabled');
-                        $('#error_name_header2').html("Internal server error");
-                        $('#error_name_message2').show();
-                    }
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    $('#login_form2.ui.form').removeClass('loading');
-                    $('#submit_login_form2').removeClass('disabled');
-                    $('#server_error_message2').show();
-                }
-            });
+        if ($('#login_form2.ui.form').form('is valid')) {            
+            $('#login_form2.ui.form').addClass('loading');
+            $('#submit_login_form2').addClass('disabled');
+            $('#login_form2.ui.form').submit();
         }
     });
 
@@ -665,6 +610,59 @@ $(document).ready(function () {
         }
         $('#submit_search_input_top').addClass('loading');
     });
+
+    $('#reply_form')
+            .form({
+                fields: {
+                    reply_message: {
+                        identifier: 'reply_message',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: "Veuillez s'il vous plait saisir votre réponse"
+                            }
+                        ]
+                    }
+                },
+                inline: true,
+                on: 'blur',
+                onSuccess: function (events, fields) {
+                    $('#reply_form').addClass('loading');
+
+                }
+            }
+            );
+
+    $('#add_topic_form')
+            .form({
+                fields: {
+                    topic_title: {
+                        identifier: 'topic_title',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: "Veuillez s'il vous plait saisir votre le titre de votre sujet"
+                            }
+                        ]
+                    },
+                    topic_description: {
+                        identifier: 'topic_description',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: "Veuillez s'il vous plait saisir une description de votre sujet"
+                            }
+                        ]
+                    }
+                },
+                inline: true,
+                on: 'blur',
+                onSuccess: function (events, fields) {
+                    $('#add_topic_form').addClass('loading');
+
+                }
+            }
+            );
 
 });
 

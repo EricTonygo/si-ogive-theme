@@ -9,8 +9,8 @@
                 <div class="ui container">
                     <div class="column content_page">
                         <div class="ui attached message">
-                            <div class="header"><?php echo __("Bienvenu dans notre site", 'si-ogivedomain') . " !" ?> </div>
-                            <p><?php echo __("Remplissez le formulaire ci-dessus pour créer un nouveau compte", 'si-ogivedomain') ?></p>
+                            <div class="header"><?php echo __("Bienvenu dans notre site", 'siogivedomain') . " !" ?> </div>
+                            <p style="font-size: 10pt;"><?php echo __("Remplissez le formulaire ci-dessous pour créer un nouveau compte", 'siogivedomain') ?></p>
                         </div>
                         <div class="ui fluid card">
                             <form id="register_account_form" method="POST" action="<?php the_permalink() ?>" class="ui form">
@@ -55,9 +55,9 @@
                                         <label>Mot de passe <span style="color:red;">*</span></label>
                                     </div>
                                     <div class="twelve wide field">
-                                        <div class="ui input right icon">
-                                            <i id="show_hide_password" class="unhide link icon"></i>
-                                            <input type="password" name="password" placeholder="Mot de passe">
+                                        <div class="ui input right icon password">
+                                            <i class="unhide link icon password" style="display: none;" input_password_id="password"></i>
+                                            <input id="password" type="password" class="visible_password" name="password" placeholder="Mot de passe">
                                         </div>
                                     </div>
                                 </div>
@@ -66,13 +66,13 @@
                                         <label>Confirmation Mot de passe <span style="color:red;">*</span></label>
                                     </div>
                                     <div class="twelve wide field">
-                                        <div class="ui input right icon">
-                                            <i id="show_hide_password_confirm" class="unhide link icon"></i>
-                                            <input type="password" name="password_confirm" placeholder="Confirmation Mot de passe">
+                                        <div class="ui input right icon confirm_password">
+                                            <i  class="unhide link icon confirm_password" style="display: none" input_password_id="confirm_password"></i>
+                                            <input id="confirm_password" type="password" class="visible_password" name="password_confirm" placeholder="Confirmation Mot de passe">
                                         </div>
                                     </div>
                                 </div>
-                                
+                                <input type="hidden" name="sign_user_after" value="yes">
                                 <div class="field">
                                     <div class="ui error message"></div>
                                     <div id="server_error_message" class="ui negative message" style="display:none">

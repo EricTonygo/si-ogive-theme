@@ -13,6 +13,8 @@ body, div, p, a, h1, h2, h3, span, input, textarea label{
     -webkit-transition: all 0.4s ease-in-out;
     -moz-transition: all 0.4s ease-in-out;
     transition: all 0.4s ease-in-out;
+    background-color: #ffdb0f;
+    height: 4.89em;
 }
 .ui.fixed.top.menu.slide.up {
     top: -75px;
@@ -62,11 +64,15 @@ body, div, p, a, h1, h2, h3, span, input, textarea label{
     }
 
     #sub_main_menu.ui.fixed.menu{
-        top: 4.5em!important;
+        top: 5.2em!important;
     }
 
     .ui.signup_container.container.content{
         width: 95%!important;
+    }
+
+    #register_bloc_login_page{
+        margin-top: 0!important;
     }
 }
 .ui.vertical.menu.collapse {
@@ -141,7 +147,7 @@ body {
 .ui.vertical.menu.moderns .item.header {
     /*  background-color: rgba(170, 120, 95, 0.74);
       color: #f7fdff;*/
-    background-color: rgb(232, 209, 4);
+    background-color: rgb(255, 219, 15);
     color: #140600;
     text-transform: uppercase;
 }
@@ -186,6 +192,11 @@ body {
     min-height: 200px;
 }
 .section.two .ui.segment {
+    box-shadow: none;
+    height: 185px;
+}
+
+#our-service.section.two .ui.segment {
     box-shadow: none;
     height: 135px;
 }
@@ -262,9 +273,9 @@ h1 {
 }
 
 #logo {
-    padding-top: 6px;
-    padding-bottom: 6px;
-    padding-left: 20px;
+    padding-top: 0.3em;
+    /*padding-bottom: 6px;*/
+    padding-left: 1.7em;
 }
 
 .ui.list>a.item i.icon {
@@ -273,10 +284,15 @@ h1 {
 
 .content.content_area_expertise a{
     color: #aa785f;
+    margin-top: 0.5em;
+}
+
+.content.content_area_expertise{
+    margin-top: 0.5em;
 }
 
 .ui.fixed.top.menu .ui.dropdown.top.pointing.item .menu{
-    top: 3.5em;
+    top: 3.8em;
 }
 
 /*.ui.dropdown.top.left.pointing.item .menu .ui.item:hover{
@@ -331,8 +347,8 @@ h2{
 }
 
 .ui.yellow.button, .ui.yellow.buttons .button{
-    background-color: #e8d104;
-    color: #272727;
+    background-color: #ffdb0f;
+    color: #000000;
 }
 
 /*.ui.blue.button:hover, .ui.blue.buttons .button:hover{
@@ -380,13 +396,13 @@ h2{
     border-radius: 0;
 }
 
-#logo>img{
+/*#logo>img{
     margin-top: 0.4em;
-}
+}*/
 
 
 #sub_main_menu.ui.fixed.menu{
-    top: 4.89em;
+    top: 5.2em;
     background-color: rgba(0, 0, 0, 0.94);
 }
 #sub_main_menu.ui.fixed.menu .ui.container{
@@ -410,4 +426,40 @@ h2{
 
 .hidden.menu {
     display: none;
+}
+
+/*.ui.warning.message .header{
+    font-size: 10pt;
+}*/
+
+ui.brown.button{
+    background-color: #aa785f;
+}
+.ui.fixed.top.menu .item{
+    font-weight: bold;
+}
+
+a.link_siogive_footer, a.link_siogive_footer:hover{
+    color: #aa785f;
+}
+
+.ui.grid>.column:not(.row) {
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+}
+
+#areas_competence .column .ui.segment{
+    border: none;
+}
+
+#our-service .column .ui.segment{
+    border: none;
+}
+
+#register_bloc_login_page{
+    margin-top: 5em;
+}
+
+.area_expertise_link, .service_link{
+    font-size: 13pt;
 }

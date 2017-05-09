@@ -18,7 +18,7 @@
         <!-- Right Sidebar -->
         <div class="four wide column">
             <div class="ui fluid vertical menu moderns">
-                <div class="item" style="text-transform: uppercase;"><strong><?php echo __('Domaines de compétence', 'si-ogivedomain') ?></strong></div>
+                <div class="item" style="text-transform: uppercase;"><strong><?php echo __('Domaines de compétence', 'siogivedomain') ?></strong></div>
                 <?php
                 $post_id= get_the_ID();
                 $areas_expertise = new WP_Query(array('post_type' => 'area-expertise', 'post_per_page' => -1, "post_status" => 'publish', 'orderby' => 'post_date', 'order' => 'ASC'));

@@ -1,16 +1,16 @@
 <?php
 
 session_start();
-$firstname = esc_attr(trim($_POST['firstname']));
-$lastname = esc_attr(trim($_POST['lastname']));
-$email = esc_attr(trim($_POST['email']));
-$phone = esc_attr(trim($_POST['phone']));
-$address = esc_attr(trim($_POST['address']));
-$country = esc_attr(trim($_POST['country']));
-$qualifications = esc_attr(trim($_POST['qualifications']));
-$lastdiploma = esc_attr(trim($_POST['lastdiploma']));
-$skills = esc_attr(trim($_POST['skills']));
-$experience = esc_attr(trim($_POST['experience']));
+$firstname = removeslashes(esc_attr(trim($_POST['firstname'])));
+$lastname = removeslashes(esc_attr(trim($_POST['lastname'])));
+$email = removeslashes(esc_attr(trim($_POST['email'])));
+$phone = removeslashes(esc_attr(trim($_POST['phone'])));
+$address = removeslashes(esc_attr(trim($_POST['address'])));
+$country = removeslashes(esc_attr(trim($_POST['country'])));
+$qualifications = removeslashes(esc_attr(trim($_POST['qualifications'])));
+$lastdiploma = removeslashes(esc_attr(trim($_POST['lastdiploma'])));
+$skills = removeslashes(esc_attr(trim($_POST['skills'])));
+$experience = removeslashes(esc_attr(trim($_POST['experience'])));
 if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $application_data = array(

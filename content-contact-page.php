@@ -40,14 +40,14 @@
         <!-- Right Sidebar -->
         <div class="four wide column">
             <div class="ui fluid vertical menu moderns">
-                <div class="item" style="text-transform: uppercase;"><strong><?php echo __('SI OGIVE', 'si-ogivedomain') ?></strong></div>
-                <a href="<?php echo get_permalink(get_page_by_path(__('notre-vision', 'si-ogivedomain'))) ?>" class="item"> <?php echo get_page_by_path(__('notre-vision', 'si-ogivedomain'))->post_title ?> </a>
-                <a href="<?php echo get_permalink(get_page_by_path(__('a-propos-de-si-ogive', 'si-ogivedomain'))) ?>" class="item"> <?php echo get_page_by_path(__('a-propos-de-si-ogive', 'si-ogivedomain'))->post_title ?> </a>
-                <a href="<?php echo get_permalink(get_page_by_path(__('nous-contacter', 'si-ogivedomain'))) ?>" class="header item"> <?php echo get_page_by_path(__('nous-contacter', 'si-ogivedomain'))->post_title ?> </a>
+                <div class="item" style="text-transform: uppercase;"><strong><?php echo __('SI OGIVE', 'siogivedomain') ?></strong></div>
+                <a href="<?php echo get_permalink(get_page_by_path(__('notre-vision', 'siogivedomain'))) ?>" class="item"> <?php echo get_page_by_path(__('notre-vision', 'siogivedomain'))->post_title ?> </a>
+                <a href="<?php echo get_permalink(get_page_by_path(__('a-propos-de-siogive', 'siogivedomain'))) ?>" class="item"> <?php echo get_page_by_path(__('a-propos-de-siogive', 'siogivedomain'))->post_title ?> </a>
+                <a href="<?php echo get_permalink(get_page_by_path(__('nous-contacter', 'siogivedomain'))) ?>" class="header item"> <?php echo get_page_by_path(__('nous-contacter', 'siogivedomain'))->post_title ?> </a>
             </div>
 
             <div class="ui fluid vertical menu moderns">
-                <div class="item" style="text-transform: uppercase;"><strong><?php echo __('Nos coordonnées', 'si-ogivedomain') ?></strong></div>
+                <div class="item" style="text-transform: uppercase;"><strong><?php echo __('Nos coordonnées', 'siogivedomain') ?></strong></div>
                 <div  class="item"><i class="mail outline icon"></i> Siège social Yaoundé BP: 5253</div>
                 <div  class="item"><i class="marker icon"></i> Situé à la Nouvelle route Bastos face Ariane TV Rue N°1839</div>
                 <div  class="item"><i class="call icon"></i> (+237) 243804388 / 243803895</div>

@@ -18,7 +18,7 @@
         <!-- Right Sidebar -->
         <div class="four wide column">
             <div class="ui fluid vertical menu moderns">
-                <div class="item" style="text-transform: uppercase;"><strong><?php echo __('Autres services', 'si-ogivedomain') ?></strong></div>
+                <div class="item" style="text-transform: uppercase;"><strong><?php echo __('Autres services', 'siogivedomain') ?></strong></div>
                 <?php
                 $post_id= get_the_ID();
                 $services = new WP_Query(array('post_type' => 'service', 'post_per_page' => -1, "post_status" => 'publish', 'orderby' => 'post_date', 'order' => 'ASC'));

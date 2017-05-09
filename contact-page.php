@@ -14,7 +14,7 @@ if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQ
         try {
             leave_message();
         } catch (Exception $ex) {
-            $json = array("message" => __("Echec d'envoi du message", 'si-ogivedomain'));
+            $json = array("message" => __("Echec d'envoi du message", 'siogivedomain'));
             return wp_send_json_error($json);
         }
     }else{

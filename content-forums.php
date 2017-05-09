@@ -8,6 +8,16 @@
                 <br>
                 <div class="ui container">
                     <div class="column content_page">
+                        <?php if (!is_user_logged_in()): ?>
+                            <div class="ui mini warning icon message">
+                                <i class="warning sign icon"></i>
+                                <div class="content">
+                                    <div class="header" style="font-weight: normal;">
+                                        Vous devez être connecté pour participer à un forum.
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endif ?>
                         <?php if (bbp_has_forums()) : ?>
                             <table class="ui celled table">
                                 <thead>
@@ -114,7 +124,7 @@
         <!-- Right Sidebar -->
         <div class="four wide column">
             <div class="ui fluid vertical menu moderns">
-                <div class="header item" style="text-transform: uppercase;"><strong><?php echo __('Forums', 'si-ogivedomain') ?></strong></div>
+                <div class="header item" style="text-transform: uppercase;"><strong><?php echo __('Forums', 'siogivedomain') ?></strong></div>
                 <?php if (bbp_has_forums()) : ?>
                     <?php while (bbp_forums()) : bbp_the_forum(); ?>
                         <div class="item">
@@ -123,22 +133,22 @@
                         </div>
                     <?php endwhile; ?>
                 <?php else : ?>
-                    
+
                 <?php endif; ?>               
             </div>
 
             <div class="ui fluid vertical menu moderns">
-                <div class="header item" style="text-transform: uppercase;"><strong><?php echo __('Sujets Recents', 'si-ogivedomain') ?></strong></div>
+                <div class="header item" style="text-transform: uppercase;"><strong><?php echo __('Sujets Recents', 'siogivedomain') ?></strong></div>
                 <?php
                 $topics = new WP_Query(array('post_type' => bbp_get_topic_post_type(), 'post_per_page' => 5, "post_status" => bbp_get_public_status_id(), 'orderby' => 'post_date', 'order' => 'DESC'));
                 if ($topics->have_posts()) {
                     while ($topics->have_posts()): $topics->the_post();
                         ?>
-                    <div class="item">
-                        <i class="angle double right icon"></i>
-                        <a href="<?php the_permalink(); ?>" > <?php the_title(); ?> </a> par <a href=""><?php echo get_avatar( get_the_author_meta( 'ID' ), 16 ); ?> <?php echo get_the_author() ?></a>
-                         <?php echo "Il y a ".human_time_diff( get_the_time('U'), current_time('timestamp') ) ; ?>
-                    </div>
+                        <div class="item">
+                            <i class="angle double right icon"></i>
+                            <a href="<?php the_permalink(); ?>" > <?php the_title(); ?> </a> par <a href=""><?php echo get_avatar(get_the_author_meta('ID'), 16); ?> <?php echo get_the_author() ?></a>
+                            <?php echo "Il y a " . human_time_diff(get_the_time('U'), current_time('timestamp')); ?>
+                        </div>
                         <?php
                     endwhile;
                 }
@@ -146,17 +156,17 @@
                 ?>
             </div>
             <div class="ui fluid vertical menu moderns">
-                <div class="header item" style="text-transform: uppercase;"><strong><?php echo __('Reponses Recentes', 'si-ogivedomain') ?></strong></div>
+                <div class="header item" style="text-transform: uppercase;"><strong><?php echo __('Reponses Recentes', 'siogivedomain') ?></strong></div>
                 <?php
                 $replies = new WP_Query(array('post_type' => bbp_get_reply_post_type(), 'post_per_page' => 5, "post_status" => bbp_get_public_status_id(), 'orderby' => 'post_date', 'order' => 'DESC'));
                 if ($replies->have_posts()) {
                     while ($replies->have_posts()): $replies->the_post();
                         ?>
-                    <div class="item">
-                        <i class="angle double right icon"></i>
-                        <a href="<?php the_permalink(); ?>" >  <?php echo wp_trim_words( get_the_content(), 10, '...' ); ?> </a> par <a href=""><?php echo get_avatar( get_the_author_meta( 'ID' ), 16 ); ?> <?php echo get_the_author() ?></a>
-                         <?php echo "Il y a ".human_time_diff( get_the_time('U'), current_time('timestamp') ) ; ?>
-                    </div>
+                        <div class="item">
+                            <i class="angle double right icon"></i>
+                            <a href="<?php the_permalink(); ?>" >  <?php echo wp_trim_words(get_the_content(), 10, '...'); ?> </a> par <a href=""><?php echo get_avatar(get_the_author_meta('ID'), 16); ?> <?php echo get_the_author() ?></a>
+                            <?php echo "Il y a " . human_time_diff(get_the_time('U'), current_time('timestamp')); ?>
+                        </div>
                         <?php
                     endwhile;
                 }

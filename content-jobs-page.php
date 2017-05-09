@@ -4,7 +4,7 @@
         <!-- Middle Content -->
         <div class="twelve wide column">
             <div align="center">
-                <div class="ui divider horizontal"><h2 class="ui header">LES OFFRES D'EMPLOI</h2></div>
+                <div class="ui divider horizontal"><h2 class="ui header">NOS OFFRES D'EMPLOI</h2></div>
                 <?php
                 $jobs = new WP_Query(array('post_type' => 'job', 'post_per_page' => -1, "post_status" => 'publish', 'orderby' => 'post_date', 'order' => 'DESC'));
                 if ($jobs->have_posts()):
@@ -47,7 +47,7 @@
         <!-- Right Sidebar -->
         <div class="four wide column">
             <div class="ui fluid vertical menu moderns">
-                <div class="item" style="text-transform: uppercase;"><strong><?php echo __("OFFRES D'EMPLOI", 'si-ogivedomain') ?></strong></div>
+                <div class="header item" style="text-transform: uppercase;"><strong><?php echo __("OFFRES D'EMPLOI", 'siogivedomain') ?></strong></div>
                 <?php 
                     $categories = get_term_children( get_category_by_slug('offres-d-emploi')->term_id, 'category' );
                     foreach ($categories as $id) : $category = get_term_by('id', $id, 'category')
@@ -56,7 +56,7 @@
                 <?php endforeach; ?>
             </div>
             <div class="ui fluid vertical menu moderns">
-                <div class="item" style="text-transform: uppercase;"><strong><?php echo __('Nos coordonnées', 'si-ogivedomain') ?></strong></div>
+                <div class="header item" style="text-transform: uppercase;"><strong><?php echo __('Nos coordonnées', 'siogivedomain') ?></strong></div>
                 <div  class="item"><i class="mail outline icon"></i> Siège social Yaoundé BP: 5253</div>
                 <div  class="item"><i class="marker icon"></i> Situé à la Nouvelle route Bastos face Ariane TV Rue N°1839</div>
                 <div  class="item"><i class="call icon"></i> (+237) 243804388 / 243803895</div>
