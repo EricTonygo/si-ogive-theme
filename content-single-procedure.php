@@ -27,20 +27,22 @@
                 <div class=" content content_page">
                     <p>
                         <?php the_content() ?>
-                    </p>
-                </div>
-                <?php
+                    </p><br>
+                    <?php
                 $detail_files_ids = get_post_meta(get_the_ID(), 'detail-files-IDs', true);
                 if (is_array($detail_files_ids) && count($detail_files_ids) > 0):
                     ?>
-                    <div >
+                        <p>Détail téléchargeable ici : </p>
                         <?php
                         foreach ($detail_files_ids as $attachement_id):
                             ?>
                         <a  href="<?php echo wp_make_link_relative(wp_get_attachment_url($attachement_id)); ?>" class="ui yellow labeled icon button procedure_detail_link"> <i class="download icon"></i><?php echo basename(get_attached_file($attachement_id)); ?> </a>
                         <?php endforeach; ?>
-                    </div>
-                <?php endif; ?>
+                <?php else :?>
+                        <p style="color: red;">Détail non disponible</p>
+                <?php endif ?>
+                </div>
+                
             </div>
 
         </div>

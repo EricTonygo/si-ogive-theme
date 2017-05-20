@@ -10,7 +10,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     $domain = removeslashes(esc_attr(trim($_POST['main_domain'])));
     $sub_domain = removeslashes(esc_attr(trim($_POST['sub_domain'])));
     $_files = get_multiple_files($_FILES);
-    $callOffer_files = $_files['call_offer_files'];
+    $callOffer_files = $_files['detail_files'];
     $callOffer_files_ids = array();    
     if (!empty($callOffer_files)) {        
         foreach ($callOffer_files as $callOffer_file) {

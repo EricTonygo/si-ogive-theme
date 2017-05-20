@@ -130,7 +130,7 @@ body, div, p, a, h1, h2, h3, span, input, textarea label{
 }
 .container.slider {
     max-height: 500px;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 @media (max-width: 768px) {
     .container.slider {
@@ -190,7 +190,7 @@ body {
 }
 .section.one {
     padding-top: 40px;
-    min-height: 200px;
+    /*min-height: 200px;*/
 }
 .section.two {
     min-height: 200px;
@@ -447,10 +447,10 @@ a.link_siogive_footer, a.link_siogive_footer:hover{
     color: #aa785f;
 }
 
-.ui.grid>.column:not(.row) {
+/*.ui.grid>.column:not(.row) {
     padding-top: 2rem;
     padding-bottom: 1rem;
-}
+}*/
 
 #areas_competence .column .ui.segment{
     border: none;
@@ -466,4 +466,17 @@ a.link_siogive_footer, a.link_siogive_footer:hover{
 
 .area_expertise_link, .service_link{
     font-size: 13pt;
+    font-weight: 700;
+}
+
+#areas_competence .column .ui.card{
+    border-radius: 0;
+}
+
+#our-service .column .ui.card{
+    border-radius: 0;
+}
+
+.ui.card>.image>img{
+    border-radius: 0;
 }

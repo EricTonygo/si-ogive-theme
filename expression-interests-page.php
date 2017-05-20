@@ -10,7 +10,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     $domain = removeslashes(esc_attr(trim($_POST['main_domain'])));
     $sub_domain = removeslashes(esc_attr(trim($_POST['sub_domain'])));
     $_files = get_multiple_files($_FILES);
-    $expressionInterest_files = $_files['expression_interest_files'];
+    $expressionInterest_files = $_files['detail_files'];
     $expressionInterest_files_ids = array();    
     if (!empty($expressionInterest_files)) {        
         foreach ($expressionInterest_files as $expressionInterest_file) {

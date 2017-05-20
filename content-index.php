@@ -2,26 +2,18 @@
 <!-- Slider Container -->
 <div id="home" class="ui container slider">
     <div class="owl-carousel" id="single-slider">
-        <?php
-
-        use Themosis\Metabox\Meta;
-        $sliders = Meta::get(get_the_ID(), 'sliders');
-        foreach ($sliders as $slider) :
-            ?>
-            <div class="item"><img src="<?php echo wp_get_attachment_image_src($slider['slider-image'], 'slider-image')[0] ?>"></div>
-        <?php endforeach ?>
-<!--div class="item"><img src="assets/img/1000x400.PNG"></div>
-<div class="item"><img src="assets/img/1000x400.PNG"></div-->
+        <div class="item"><img src="<?php echo get_template_directory_uri() ?>/assets/img/slide_image1.jpg"></div>
+        <div class="item"><img src="<?php echo get_template_directory_uri() ?>/assets/img/slide_image2.jpg"></div>
     </div>
 </div>
 
 <!-- Content area -->
 <div id="vision" class="section one">
     <div class="ui container">
-        <h1><?php echo __("NOTRE VISION", 'siogivedomain') ?></h1>
-        <p style="text-align: center; font-size: 14pt">
-            <?php echo Meta::get(get_the_ID(), 'our-vision-home') ?>
-        </p>
+        <!--<h1><?php echo __("NOTRE VISION", 'siogivedomain') ?></h1>-->
+        <div style="text-align: center; font-size: 14pt">
+            <?php the_content(); ?>
+        </div>
     </div>
 </div>
 <div class="ui divider"></div>
@@ -48,6 +40,16 @@
                             </div>
                         </h2>
                     </div>
+<!--                    <div class="ui centered card">
+                      <?php if ( has_post_thumbnail() ): ?>
+                      <div class="image">
+                        <img src="<?php the_post_thumbnail_url( 'full' ); ?>">
+                      </div>
+                        <?php endif ?>
+                      <div class="content content_area_expertise">
+                                <a class="area_expertise_link" href="<?php the_permalink() ?>"><?php the_title() ?></a>
+                            </div>
+                    </div>-->
                 </div>
             <?php endwhile; 
              wp_reset_postdata();
@@ -86,6 +88,16 @@
                         </h2>
                     </div>
                 </div>
+<!--                <div class="ui centered card">
+                    <?php if ( has_post_thumbnail() ): ?>
+                  <div class="image">
+                    <img src="<?php the_post_thumbnail_url( 'full' ); ?>">
+                  </div>
+                    <?php endif ?>
+                  <div class="content content_area_expertise">
+                        <a class="service_link" href="<?php the_permalink() ?>"><?php the_title() ?></a>
+                    </div>
+                </div>-->
             <?php endwhile; 
             wp_reset_postdata();
             }?>            

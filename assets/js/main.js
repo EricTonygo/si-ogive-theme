@@ -469,9 +469,7 @@ $(document).ready(function () {
                 },
                 success: function (response, textStatus, jqXHR) {
                     if (response.success === true) {
-                        //$('#register_account_form.ui.form').submit();
-                        //window.location.reload();
-                        console.log(response);
+                        window.location.reload();
                         $('#message_success>div.header').html(response.data.message);
                         $('#message_success').show();
                     } else if (response.success === false) {
