@@ -1,25 +1,27 @@
 <?php wp_reset_postdata();?>
 <!-- Slider Container -->
-<div id="home" class="ui container slider">
+<!--<div id="home" class="ui container slider">
     <div class="owl-carousel" id="single-slider">
         <div class="item"><img src="<?php echo get_template_directory_uri() ?>/assets/img/slide_image1.jpg"></div>
         <div class="item"><img src="<?php echo get_template_directory_uri() ?>/assets/img/slide_image2.jpg"></div>
     </div>
+</div>-->
+
+<div id="home" class="banner" style="background: linear-gradient(-225deg, rgba(30, 30, 30, 0.6)30%, rgba(46, 46, 46,0.5)80%), url('<?php echo get_template_directory_uri() ?>/assets/img/slide_image1.jpg'); background-size: cover; background-position: center;">
+    <div class="banner_content ui container">
+        <h1>
+            Société d'ingénierie ogive
+        </h1>
+        <div class="my_underline">&nbsp;</div>
+        <h2><?php the_content(); ?></h2>
+    </div>
 </div>
 
 <!-- Content area -->
-<div id="vision" class="section one">
-    <div class="ui container">
-        <!--<h1><?php echo __("NOTRE VISION", 'siogivedomain') ?></h1>-->
-        <div style="text-align: center; font-size: 14pt">
-            <?php the_content(); ?>
-        </div>
-    </div>
-</div>
-<div class="ui divider"></div>
+
 <div id="areas_competence" class="section two">
     <div class="ui container">
-        <h1><?php echo __("DOMAINES DE COMPETENCE", 'siogivedomain') ?></h1>
+        <h1 style="text-transform: uppercase;"><?php echo __("Domaines de compétence", 'siogivedomain') ?></h1>
         <div class="ui three column stackable doubling grid center ">
             <?php
             $areas_expertise = new WP_Query(array('post_type' => 'area-expertise', 'post_per_page' => -1, "post_status" => 'publish', 'orderby' => 'post_date', 'order' => 'ASC'));
@@ -104,4 +106,5 @@
         </div>
     </div>
 </div>
+
 <div class="ui hidden divider"></div>

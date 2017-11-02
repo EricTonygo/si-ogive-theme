@@ -6,7 +6,7 @@
 
 if (!is_user_logged_in()) {
     if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
-        $user_login = str_replace("+", "", removeslashes(esc_attr(trim($_POST['username']))));
+        $user_login = removeslashes(esc_attr(trim($_POST['username'])));
         $user_pass = esc_attr($_POST['password']);
         $user_email = removeslashes(esc_attr(trim($_POST['email'])));
         $first_name = removeslashes(esc_attr(trim($_POST['first_name'])));

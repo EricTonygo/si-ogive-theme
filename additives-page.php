@@ -11,8 +11,8 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     $sub_domain = removeslashes(esc_attr(trim($_POST['sub_domain'])));
     $_files = get_multiple_files($_FILES);
     $additive_files = $_files['detail_files'];
-    $additive_files_ids = array();    
-    if (!empty($additive_files)) {        
+    $additive_files_ids = array();
+    if (!empty($additive_files)) {
         foreach ($additive_files as $additive_file) {
             $additive_file_id = upload_file_api($additive_file);
             $additive_files_ids[] = $additive_file_id;
@@ -28,8 +28,14 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $additive_id = saveAdditive($additive_data);
     if (!is_wp_error($additive_id)) {
-        $json = array("url" => get_permalink($additive_id));
-        return wp_send_json_success($json);
+//        $detail_files_ids = get_post_meta($additive_id, 'detail-files-IDs', true);
+//        if (is_array($detail_files_ids) && count($detail_files_ids) > 0) {
+            $json = array("url" => get_permalink($additive_id));
+            return wp_send_json_success($json);
+//        } else {
+//            $json = array("url" => "");
+//            return wp_send_json_success($json);
+//        }
     } else {
         $json = array("url" => "");
         return wp_send_json_error($json);

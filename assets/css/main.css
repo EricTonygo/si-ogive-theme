@@ -6,7 +6,11 @@ body, div, p, a, h1, h2, h3, span, input, textarea label{
     /*font-family: "Whitney SSm A","Whitney SSm B","Helvetica Neue",Helvetica,Arial,sans-serif !important;*/
 }
 
-.ui.fixed.top.menu {
+/* Content Area */
+body {
+    padding-top: 9em;
+}
+.ui.main.fixed.top.menu {
     top: 5px;
     justify-content: center;
     border: none;
@@ -41,6 +45,10 @@ body, div, p, a, h1, h2, h3, span, input, textarea label{
   color: #f7fdff;
 }*/
 
+.ui.container.top-nav{
+    width: 1220px;
+}
+
 
 .ui.fixed.top.menu .item:before {
     background: none;
@@ -48,23 +56,56 @@ body, div, p, a, h1, h2, h3, span, input, textarea label{
 .ui.fixed.top.menu .item.icon {
     display: none;
 }
-@media (max-width: 900px) {
-    .ui.fixed.top.menu .center.menu .item:not(.icon) {
-        display: none;
-    }
 
-    .ui.fixed.top.menu .right.menu .item:not(.icon) {
-        display: none;
-    }
-    .ui.fixed.top.menu .item.icon {
-        display: block;
-    }
+/************Css of Second desktop menu ************/
+#second_desktop_menu{
+    top: 5em;
+    background: rgb(20, 6, 0);
+    height: 3.5em;
+}
+
+#second_desktop_menu.menu .item{
+    color: white;
+    height: 100%
+}
+
+#second_desktop_menu.menu .active.item {
+    background-color: transparent;
+    box-shadow: none;
+    border-color: #ffdb0f;
+    font-weight: 700;
+    color:#ffdb0f;
+}
+
+#services_dropdown .menu{
+    margin-top: 0px;
+    background: rgb(20, 6, 0);
+    border-radius:0;
+}
+
+#services_dropdown .menu .item{
+    color: white!important;
+    text-transform: uppercase!important;
+}
+
+.my_underline{
+    height: 4px;
+    width: 20em;
+    background: #ffdb0f;
+    margin-left: auto;
+    margin-right: auto;
+}
+/**************************************************/
+
+
+@media (max-width: 900px) {
+
     #large_logo_block{
         display: none
     }
 
     #sub_main_menu.ui.fixed.menu{
-        top: 5.2em!important;
+        top: 5.1em!important;
     }
 
     .ui.signup_container.container.content{
@@ -74,11 +115,85 @@ body, div, p, a, h1, h2, h3, span, input, textarea label{
     #register_bloc_login_page{
         margin-top: 0!important;
     }
-    
+
     .procedure_detail_link{
         margin-bottom: 1em;
     }
+    #desktop_menu{
+        display: none;
+    }
+    #mobile_menu{
+        display: block!important;
+    }
+    #second_desktop_menu{
+        display: none;
+    }
+
+    body{
+        padding-top: 5em!important;
+    }
+
+    .my_underline{
+        height: 2px;
+        width: 11em;
+    }
+
+    
+    .banner_content h1{
+        font-size: 18pt!important;
+    }
+    .banner_content h2{
+        font-size: 11pt!important;
+    }
+
 }
+
+@media (max-width: 350px) {
+    .my_underline{
+        height: 2px;
+        width: 11em;
+    }
+    
+    .banner_content h1{
+        font-size: 14pt!important;
+    }
+    .banner_content h2{
+        font-size: 10pt!important;
+    }
+
+}
+
+/* CSS of Banner of Home page */
+
+.banner{
+    height: 73.5vh;
+    margin-top: -0.6em;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.banner_content {
+    color: white;
+    flex: 0 0 800px;
+
+}
+.banner_content.ui.container h1{
+    font-size: 31pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white!important;
+}
+.banner_content.ui.container h2{
+    font-size: 17pt;
+    font-weight: lighter;
+    color: white!important;
+}
+
+/********************************/
+
+
 .ui.vertical.menu.collapse {
     position: fixed;
     top: -200vh;
@@ -92,6 +207,7 @@ body, div, p, a, h1, h2, h3, span, input, textarea label{
 .ui.vertical.menu.collapse.slide.down {
     top: 45px;
 }
+
 @media (min-width: 900px) {
     .ui.vertical.menu.collapse {
         display: none;
@@ -140,10 +256,7 @@ body, div, p, a, h1, h2, h3, span, input, textarea label{
 .container.slider img {
     width: 100%;
 }
-/* Content Area */
-body {
-    padding-top: 75px;
-}
+
 .ui.vertical.menu.moderns {
     border-radius: 0;
     border: none;
@@ -232,9 +345,10 @@ body {
     color: #f7fdff;
 }
 .copyright {
-    background-color: #f7fdff;
+    background-color: #1f1818;
     text-align: center;
     padding: 20px;
+    color: white;
 }
 #toTop {
     position: fixed;
@@ -454,6 +568,7 @@ a.link_siogive_footer, a.link_siogive_footer:hover{
 
 #areas_competence .column .ui.segment{
     border: none;
+    box-shadow: none;
 }
 
 #our-service .column .ui.segment{

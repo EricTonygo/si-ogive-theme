@@ -19,7 +19,7 @@
                             </div>
                         <?php endif ?>
                         <?php if (bbp_has_forums()) : ?>
-                            <table class="ui celled table">
+                            <table class="ui celled unstackable table">
                                 <thead>
                                     <tr>
                                         <th ><?php _e('Forum', 'bbpress'); ?></th>

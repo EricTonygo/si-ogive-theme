@@ -1,20 +1,20 @@
 <?php
 
+/*
+  Template Name: Home Page
+ */
+if (is_front_page()) {
+    if (is_user_logged_in() && isset($_GET['logout']) && esc_attr($_GET['logout']) == 'true') {
+        wp_logout();
+        wp_safe_redirect(home_url('/'));
+    }
 
-get_header(); 
+    get_header();
 
-the_content();
-?>
-<!--<table>
-    <?php
-bbp_list_forums(array (
-        'before' => '<tr>',
-        'after' => '</tr>',
-        'link_before' => '<td>',
-        'link_after' => '</td>',
-        'separator' => '',
-)); 
-?>
-</table>-->
-<?php
-get_footer(); 
+    get_template_part('content-index');
+
+    get_footer();
+} else {
+    wp_safe_redirect(home_url('/'));
+    exit;
+}

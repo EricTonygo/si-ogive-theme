@@ -31,13 +31,13 @@ if (!is_user_logged_in()) {
                     $json = array("message" => "Mot de passe incorrect");
                     return wp_send_json_error($json);
                 }
-//                elseif ($user_login && !is_null($expired_state) && $expired_state == "1") {
-//                    $json = array("message" => "Votre abonnement a expiré");
-//                    return wp_send_json_error($json);
-//                } elseif ($user_login && !is_null($state) && $state == "0") {
-//                    $json = array("message" => "Votre abonnement a été désactivé");
-//                    return wp_send_json_error($json);
-//                } 
+                elseif ($user_login && !is_null($expired_state) && $expired_state == "1") {
+                    $json = array("message" => "Votre abonnement a expiré");
+                    return wp_send_json_error($json);
+                } elseif ($user_login && !is_null($state) && $state == "0") {
+                    $json = array("message" => "Votre abonnement a été désactivé");
+                    return wp_send_json_error($json);
+                } 
                 else {
                     if (isset($_POST['no_redirect']) && $_POST['no_redirect'] == "true") {
                         $remember = removeslashes(esc_attr(trim($_POST['_remember'])));
@@ -54,7 +54,7 @@ if (!is_user_logged_in()) {
                     return wp_send_json_success($json);
                 }
             } else {
-//                $json = array("message" => "Saisir le nom d'utilisateur et le mot de passe");
+                $json = array("message" => "Saisir le nom d'utilisateur et le mot de passe");
                 return wp_send_json_error($json);
             }
         } elseif (isset($_POST['_username']) && isset($_POST['_password'])) {

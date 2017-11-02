@@ -11,8 +11,8 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     $sub_domain = removeslashes(esc_attr(trim($_POST['sub_domain'])));
     $_files = get_multiple_files($_FILES);
     $callOffer_files = $_files['detail_files'];
-    $callOffer_files_ids = array();    
-    if (!empty($callOffer_files)) {        
+    $callOffer_files_ids = array();
+    if (!empty($callOffer_files)) {
         foreach ($callOffer_files as $callOffer_file) {
             $callOffer_file_id = upload_file_api($callOffer_file);
             $callOffer_files_ids[] = $callOffer_file_id;
@@ -28,8 +28,14 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $callOffer_id = saveCallOffer($call_offer_data);
     if (!is_wp_error($callOffer_id)) {
-        $json = array("url" => get_permalink($callOffer_id));
-        return wp_send_json_success($json);
+//        $detail_files_ids = get_post_meta($callOffer_id, 'detail-files-IDs', true);
+//        if (is_array($detail_files_ids) && count($detail_files_ids) > 0) {
+            $json = array("url" => get_permalink($callOffer_id));
+            return wp_send_json_success($json);
+//        } else {
+//            $json = array("url" => "");
+//            return wp_send_json_success($json);
+//        }
     } else {
         $json = array("url" => "");
         return wp_send_json_error($json);

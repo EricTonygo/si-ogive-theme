@@ -349,15 +349,16 @@ $(document).ready(function () {
                         rules: [
                             {
                                 type: 'regExp[/^([\+,00]{1}[0-9]{2,}?)$/]',
-                                prompt: "Veuillez saisir un numéro de téléphone valide."
+                                prompt: "Veuillez saisir un numéro de téléphone valide avec l'indicatif du pays."
                             }
                         ]
                     }
                 },
-                inline: false,
+                inline: true,
                 on: 'change',
                 onSuccess: function (event, fields) {
-                    $("#apply_job_form.ui.form").submit();
+                    $("#apply_job_form.ui.form").addClass('loading');
+                    //$("#apply_job_form.ui.form").submit();
                 }
             }
             );
@@ -368,9 +369,9 @@ $(document).ready(function () {
         }
     });
 
-    $('#submit_apply_job').click(function (e) {
-        $("#apply_job_form.ui.form").addClass('loading');
-    });
+//    $('#submit_apply_job').click(function (e) {
+//        $("#apply_job_form.ui.form").addClass('loading');
+//    });
 
 //    $("#apply_job_form.ui.form").submit(function (e) {
 //        if (e.keyCode == 13) {
@@ -452,7 +453,6 @@ $(document).ready(function () {
                     $('#block_form_edit').show();
                     $('#submit_register_account').addClass('disabled');
                     $('#edit_account').addClass('disabled');
-                    $('#confirm_create_account').addClass('disabled');
                     $('#register_account_form.ui.form').addClass('loading');
                 },
                 statusCode: {
@@ -468,10 +468,10 @@ $(document).ready(function () {
                     }
                 },
                 success: function (response, textStatus, jqXHR) {
-                    if (response.success === true) {
-                        window.location.reload();
+                    if (response.success === true) {                        
                         $('#message_success>div.header').html(response.data.message);
                         $('#message_success').show();
+                        window.location.reload();
                     } else if (response.success === false) {
                         $('#register_account_form.ui.form').removeClass('loading');
                         $('#submit_register_account').removeClass('disabled');
@@ -493,6 +493,193 @@ $(document).ready(function () {
             });
         }
     });
+    
+    
+    $('#update_account_form.ui.form')
+            .form({
+                fields: {
+                    last_name: {
+                        identifier: 'last_name',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: 'Veuillez saisir votre nom'
+                            }
+                        ]
+                    },
+                    username: {
+                        identifier: 'username',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: 'Veuillez saisir votre pseudo'
+                            }
+                        ]
+                    },
+                    email: {
+                        identifier: 'email',
+                        rules: [
+                            {
+                                type: 'email',
+                                prompt: 'Veuillez saisir une adresse email valide'
+                            }
+                        ]
+                    }
+                },
+                inline: true,
+                on: 'change'
+            }
+            );
+
+    $('#submit_update_account').click(function (e) {
+        e.preventDefault();
+        $('#server_error_message').hide();
+        $('#error_name_message').hide();
+        $('#error_name_message_edit').hide();
+        if ($('#update_account_form.ui.form').form('is valid')) {
+            $.ajax({
+                type: 'post',
+                url: $('#update_account_form.ui.form').attr('action'),
+                data: $('#update_account_form.ui.form').serialize(),
+                dataType: 'json',
+                beforeSend: function () {
+                    $('#block_recap').hide();
+                    $('#block_form_edit').show();
+                    $('#submit_update_account').addClass('disabled');
+                    $('#edit_account').addClass('disabled');
+                    $('#update_account_form.ui.form').addClass('loading');
+                },
+                statusCode: {
+                    500: function (xhr) {
+                        $('#update_account_form.ui.form').removeClass('loading');
+                        $('#server_error_message').show();
+                    },
+                    400: function (response, textStatus, jqXHR) {
+                        $('#update_account_form.ui.form').removeClass('loading');
+                        $('#error_name_header').html("Echec de la validation");
+                        $('#error_name_message').show();
+
+                    }
+                },
+                success: function (response, textStatus, jqXHR) {
+                    if (response.success === true) {                        
+                        $('#message_success>div.header').html(response.data.message);
+                        $('#message_success').show();
+                        window.location.reload();
+                    } else if (response.success === false) {
+                        $('#update_account_form.ui.form').removeClass('loading');
+                        $('#submit_update_account').removeClass('disabled');
+                        $('#error_name_header').html("Echec de la validation");
+                        $('#error_name_list').html('<li>' + response.data.message + '</li>');
+                        $('#error_name_message').show();
+                    } else {
+                        $('#update_account_form.ui.form').removeClass('loading');
+                        $('#submit_update_account').removeClass('disabled');
+                        $('#error_name_header').html("Internal server error");
+                        $('#error_name_message').show();
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $('#update_account_form.ui.form').removeClass('loading');
+                    $('#submit_update_account').removeClass('disabled');
+                    $('#server_error_message').show();
+                }
+            });
+        }
+    });
+    
+    
+    //Reset a password
+    $('#reset_password_form.ui.form')
+            .form({
+                fields: {
+                    old_password: {
+                        identifier: 'old_password',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: "Veuillez saisir votre mot de passe actuel"
+                            }
+                        ]
+                    },
+
+                    new_password: {
+                        identifier: 'new_password',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: "Veuillez saisir le nouveau mot de passe"
+                            }
+                        ]
+                    },
+                    confirm_new_password: {
+                        identifier: 'confirm_new_password',
+                        rules: [
+                            {
+                                type: 'match[new_password]',
+                                prompt: "Les mots de passe saisis ne correspondent pas"
+                            }
+                        ]
+                    }
+                },
+                inline: true,
+                on: 'blur'
+            }
+            );
+
+    $('#submit_reset_password').click(function (e) {
+        e.preventDefault();
+        $('#server_error_message').hide();
+        //$('#reset_password_form.ui.form').form('validate form');
+        if ($('#reset_password_form.ui.form').form('is valid')) {
+            $.ajax({
+                type: 'post',
+                url: $('#reset_password_form.ui.form').attr('action'),
+                data: $('#reset_password_form.ui.form').serialize(),
+                dataType: 'json',
+                beforeSend: function () {
+                    $('#reset_password_form.ui.form').addClass('loading');
+                    $('#submit_reset_password').addClass('disabled');
+                },
+                statusCode: {
+                    500: function (xhr) {
+                        $('#reset_password_form.ui.form').removeClass('loading');
+                        $('#submit_reset_password').removeClass('disabled');
+                        $('#server_error_message').show();
+                    },
+                    400: function (response, textStatus, jqXHR) {
+                        $('#reset_password_form.ui.form').removeClass('loading');
+                        $('#submit_reset_password').removeClass('disabled');
+                        $('#error_name_header').html(gpdeal_translate("Failed to validate"));
+                        $('#error_name_message').show();
+                    }
+                },
+                success: function (response, textStatus, jqXHR) {
+                    if (response.success === true) {
+                        $('#reset_password_form.ui.form').submit();
+                    } else if (response.success === false) {
+                        $('#reset_password_form.ui.form').removeClass('loading');
+                        $('#submit_reset_password').removeClass('disabled');
+                        $('#error_name_header').html(gpdeal_translate("Failed to validate"));
+                        $('#error_name_list').html('<li>' + response.data.message + '</li>');
+                        $('#error_name_message').show();
+                    } else {
+                        $('#reset_password_form.ui.form').removeClass('loading');
+                        $('#submit_reset_password').removeClass('disabled');
+                        $('#error_name_header').html(gpdeal_translate("Internal server error"));
+                        $('#error_name_message').show();
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $('#reset_password_form.ui.form').removeClass('loading');
+                    $('#submit_reset_password').removeClass('disabled');
+                    $('#server_error_message').show();
+                }
+            });
+        }
+    });
+    
+    
 
     $('#login_form.ui.form')
             .form({

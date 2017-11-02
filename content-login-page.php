@@ -13,7 +13,7 @@
                                 <div id='menu_grid_column_container' class="ui two column stackable relaxed equal divided height grid">
                                     <div class="column">
 
-                                        <form id="login_form2"  method="POST" class="ui form login_form" action="<?php echo get_permalink(get_page_by_path(__('connexion', 'gpdealdomain'))) ?>" style="margin-bottom: 1em" autocomplete="off" onkeydown="submit_modal_login_form();">
+                                        <form id="login_form2"  method="POST" class="ui form login_form" action="<?php echo get_permalink(get_page_by_path(__('connexion', 'gpdealdomain'))) ?>" style="margin-bottom: 1em" onkeydown="submit_modal_login_form();">
                                             <div class="field">
                                                 <label>Email ou pseudo <span style="color: red;">*</span></label>
                                                 <div class="ui input left icon">
@@ -38,10 +38,11 @@
                                                     <label>Se souvenir de moi</label>
                                                 </div>
                                             </div>
+                                                
                                             <div class="field">
                                                 <div id="server_error_message2" class="ui negative message" <?php if (!isset($_SESSION['signin_error'])): ?>style="display:none" <?php endif ?>>
                                                     <i class="close icon"></i>
-                                                    <div id="server_error_content2" class="header"><?php if (isset($_SESSION['signin_error'])){ echo $_SESSION['signin_error']; } ?></div>
+                                                    <div id="server_error_content2" class="header"><?php if (isset($_SESSION['signin_error'])){ echo $_SESSION['signin_error']; unset($_SESSION['signin_error']);} ?></div>
                                                 </div>
                                                 <div id="error_name_message2" class="ui error message" style="display: none">
                                                     <i class="close icon"></i>
