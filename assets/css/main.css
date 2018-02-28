@@ -4,11 +4,13 @@
 body, div, p, a, h1, h2, h3, span, input, textarea label{
     font-family: "Segoe UI", Tahoma, Arial, "Helvetica Neue", Helvetica, Sans-Serif!important;
     /*font-family: "Whitney SSm A","Whitney SSm B","Helvetica Neue",Helvetica,Arial,sans-serif !important;*/
+
 }
 
 /* Content Area */
 body {
     padding-top: 9em;
+    /*background-color: #f8f8f8;*/
 }
 .ui.main.fixed.top.menu {
     top: 5px;
@@ -49,6 +51,9 @@ body {
     width: 1220px;
 }
 
+.ui.container.content{
+    margin-top: 1em;
+}
 
 .ui.fixed.top.menu .item:before {
     background: none;
@@ -313,6 +318,36 @@ body {
     height: 185px;
 }
 
+.ui.container .ui.column.grid .column .ui.card:hover{
+    box-shadow: 0 9px 20px 0 #D4D4D5, 0 0 10px 3px #D4D4D5;
+}
+
+.ui.container .ui.column.grid .column .ui.card{
+    box-shadow: 0 1px 3px 0 #D4D4D5, 0 0 0 1px #D4D4D5;
+}
+
+.ui.container .ui.three.grid .column .ui.card .image{
+    height: 200px;
+}
+
+.ui.container .ui.three.grid .column .ui.card .image img{
+    height: 200px;
+}
+
+.ui.container .ui.three.grid .column .ui.card .content.card_title{
+    height: 70px;
+}
+
+.ui.container #areas_competence.ui.three.grid .column .ui.card .content.card_title{
+    height: 80px;
+}
+
+.ui.container .ui.three.grid .column .ui.card .content.card_title a.header{
+    height: 70px;
+    color: #aa785f;
+    font-weight: 400;
+}
+
 #our-service.section.two .ui.segment {
     box-shadow: none;
     height: 135px;
@@ -380,6 +415,15 @@ h2.ui.header>.content{
 
 .ui.container>h1{
     color: #aa785f;
+    font-weight: 400;
+}
+
+.ui.horizontal.divider>h2{
+    font-weight: 400;
+}
+
+.ui.vertical.menu.moderns .item.header{
+    font-weight: 400;
 }
 
 canvas{
@@ -594,4 +638,8 @@ a.link_siogive_footer, a.link_siogive_footer:hover{
 
 .ui.card>.image>img{
     border-radius: 0;
+}
+
+.ui.comments .reply.form textarea {
+    height: 4em;
 }

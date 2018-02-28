@@ -65,7 +65,7 @@ $(document).ready(function () {
             }
         });
 
-    }else{
+    } else {
         $('.ui.button.procedure_detail_link').removeClass('fluid');
     }
 
@@ -468,7 +468,7 @@ $(document).ready(function () {
                     }
                 },
                 success: function (response, textStatus, jqXHR) {
-                    if (response.success === true) {                        
+                    if (response.success === true) {
                         $('#message_success>div.header').html(response.data.message);
                         $('#message_success').show();
                         window.location.reload();
@@ -493,8 +493,8 @@ $(document).ready(function () {
             });
         }
     });
-    
-    
+
+
     $('#update_account_form.ui.form')
             .form({
                 fields: {
@@ -562,7 +562,7 @@ $(document).ready(function () {
                     }
                 },
                 success: function (response, textStatus, jqXHR) {
-                    if (response.success === true) {                        
+                    if (response.success === true) {
                         $('#message_success>div.header').html(response.data.message);
                         $('#message_success').show();
                         window.location.reload();
@@ -587,8 +587,8 @@ $(document).ready(function () {
             });
         }
     });
-    
-    
+
+
     //Reset a password
     $('#reset_password_form.ui.form')
             .form({
@@ -650,7 +650,7 @@ $(document).ready(function () {
                     400: function (response, textStatus, jqXHR) {
                         $('#reset_password_form.ui.form').removeClass('loading');
                         $('#submit_reset_password').removeClass('disabled');
-                        $('#error_name_header').html(gpdeal_translate("Failed to validate"));
+                        $('#error_name_header').html("Failed to validate");
                         $('#error_name_message').show();
                     }
                 },
@@ -660,13 +660,13 @@ $(document).ready(function () {
                     } else if (response.success === false) {
                         $('#reset_password_form.ui.form').removeClass('loading');
                         $('#submit_reset_password').removeClass('disabled');
-                        $('#error_name_header').html(gpdeal_translate("Failed to validate"));
+                        $('#error_name_header').html("Failed to validate");
                         $('#error_name_list').html('<li>' + response.data.message + '</li>');
                         $('#error_name_message').show();
                     } else {
                         $('#reset_password_form.ui.form').removeClass('loading');
                         $('#submit_reset_password').removeClass('disabled');
-                        $('#error_name_header').html(gpdeal_translate("Internal server error"));
+                        $('#error_name_header').html("Internal server error");
                         $('#error_name_message').show();
                     }
                 },
@@ -678,8 +678,8 @@ $(document).ready(function () {
             });
         }
     });
-    
-    
+
+
 
     $('#login_form.ui.form')
             .form({
@@ -785,7 +785,7 @@ $(document).ready(function () {
     $('#submit_login_form2').click(function (e) {
         e.preventDefault();
         $('#server_error_message').hide();
-        if ($('#login_form2.ui.form').form('is valid')) {            
+        if ($('#login_form2.ui.form').form('is valid')) {
             $('#login_form2.ui.form').addClass('loading');
             $('#submit_login_form2').addClass('disabled');
             $('#login_form2.ui.form').submit();
@@ -852,5 +852,203 @@ $(document).ready(function () {
             }
             );
 
+    $('#comment_form')
+            .form({
+                fields: {
+                    comment_author: {
+                        identifier: 'comment_author',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: "Veuillez saisir votre nom"
+                            }
+                        ]
+                    },
+                    comment_author_email: {
+                        identifier: 'comment_author_email',
+                        rules: [
+                            {
+                                type: 'email',
+                                prompt: 'Veuillez saisir une adresse email valide'
+                            }
+                        ]
+                    },
+                    comment_content: {
+                        identifier: 'comment_content',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: "Veuillez saisir votre commentaire"
+                            }
+                        ]
+                    }
+                },
+                inline: true,
+                on: 'blur'
+            }
+            );
+
+    $('.add_comment_reply_form')
+            .form({
+                fields: {
+                    comment_author: {
+                        identifier: 'comment_author',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: "Veuillez saisir votre nom"
+                            }
+                        ]
+                    },
+                    comment_author_email: {
+                        identifier: 'comment_author_email',
+                        rules: [
+                            {
+                                type: 'email',
+                                prompt: 'Veuillez saisir une adresse email valide'
+                            }
+                        ]
+                    },
+                    comment_content: {
+                        identifier: 'comment_content',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: "Veuillez saisir votre commentaire"
+                            }
+                        ]
+                    }
+                },
+                inline: true,
+                on: 'blur'
+            }
+            );
+
+    $('#comment_form').submit(function (e) {
+        e.preventDefault();
+        if ($('#comment_form').form("is valid")) {
+            $.ajax({
+                type: 'post',
+                url: $('#comment_form').attr('action'),
+                data: $('#comment_form').serialize(),
+                dataType: 'json',
+                beforeSend: function () {
+                    $('#error_server_message').hide();
+                    $('#error_name_message').show();
+                    $('#comment_form').addClass('loading');
+                },
+                statusCode: {
+                    500: function (xhr) {
+                        $('#comment_form').removeClass('loading');
+                        $('#error_server_message').show();
+                    },
+                    400: function (response, textStatus, jqXHR) {
+                        $('#comment_form').removeClass('loading');
+                        $('#error_name_header').html("Failed to validate");
+                        $('#error_name_message').show();
+                    }
+                },
+                success: function (response, textStatus, jqXHR) {
+                    if (response.success === true) {
+                        window.location.reload();
+                    } else if (response.success === false) {
+                        $('#comment_form').removeClass('loading');
+                        $('#error_name_header').html("Failed to validate");
+                        $('#error_name_list').html('<li>' + response.data.message + '</li>');
+                        $('#error_name_message').show();
+                    } else {
+                        $('#comment_form').removeClass('loading');
+                        $('#error_name_header').html("Internal server error");
+                        $('#error_name_message').show();
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $('#comment_form').removeClass('loading');
+                }
+            });
+        }
+        return false;
+    });
+
 });
 
+
+function add_comment_reply(event, id) {
+    event.preventDefault();
+    if ($('#comment_reply_form' + id).form("is valid")) {
+        $.ajax({
+            type: 'post',
+            url: $('#comment_reply_form' + id).attr('action'),
+            data: $('#comment_reply_form' + id).serialize(),
+            dataType: 'json',
+            beforeSend: function () {
+                $('#error_server_message' + id).hide();
+                $('#error_name_message').show();
+                $('#comment_reply_form' + id).addClass('loading');
+            },
+            statusCode: {
+                500: function (xhr) {
+                    $('#comment_reply_form' + id).removeClass('loading');
+                    $('#error_server_message' + id).show();
+                },
+                400: function (response, textStatus, jqXHR) {
+                    $('#comment_reply_form' + id).removeClass('loading');
+                    $('#error_name_header' + id).html("Failed to validate");
+                    $('#error_name_message' + id).show();
+                }
+            },
+            success: function (response, textStatus, jqXHR) {
+                if (response.success === true) {
+                    window.location.reload();
+                } else if (response.success === false) {
+                    $('#comment_reply_form' + id).removeClass('loading');
+                    $('#error_name_header' + id).html("Failed to validate");
+                    $('#error_name_list' + id).html('<li>' + response.data.message + '</li>');
+                    $('#error_name_message' + id).show();
+                } else {
+                    $('#comment_reply_form' + id).removeClass('loading');
+                    $('#error_name_header' + id).html("Internal server error");
+                    $('#error_name_message' + id).show();
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $('#comment_reply_form' + id).removeClass('loading');
+            }
+        });
+    }
+    return false;
+}
+
+function show_comment_reply_form(id) {
+    $('#show_comment_reply_form' + id).hide();
+    $('#hide_comment_reply_form' + id).show();
+    hide_all_reply_comment(id);
+    $('#comment_reply_form' + id).show();
+}
+function hide_comment_reply_form(id) {
+    $('#hide_comment_reply_form' + id).hide();
+    $('#show_comment_reply_form' + id).show();
+    $('#comment_reply_form' + id).hide();
+}
+
+function show_evaluation_comment_form(id) {
+    $('#show_evaluation_comment_form' + id).hide();
+    $('#hide_evaluation_comment_form' + id).show();
+    $('#evaluation_comment_form' + id).show();
+}
+function hide_evaluation_comment_form(id) {
+    $('#hide_evaluation_comment_form' + id).hide();
+    $('#show_evaluation_comment_form' + id).show();
+    $('#evaluation_comment_form' + id).hide();
+}
+
+function show_all_reply_comment(id) {
+    $('#show_all_reply_comment' + id).hide();
+    $('#hide_all_reply_comment' + id).show();
+    $('#all_reply_comment' + id).show();
+}
+function hide_all_reply_comment(id) {
+    $('#hide_all_reply_comment' + id).hide();
+    $('#show_all_reply_comment' + id).show();
+    $('#all_reply_comment' + id).hide();
+}

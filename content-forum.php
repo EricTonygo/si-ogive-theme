@@ -116,7 +116,7 @@
 
                             <div class="field">
                                 <!--<button id="cancel_add_topic" class="three ui grey button"> Annuler</button>-->
-                                <button id="submit_add_topic" class="ui yellow labeled icon button"><i class="icon edit"></i> Ajouter</button>
+                                <button id="submit_add_topic" class="ui yellow labeled icon button"><i class="icon write"></i> Ajouter</button>
                             </div>
                         </form>
                     </div>

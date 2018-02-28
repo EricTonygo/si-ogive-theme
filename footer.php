@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="column">
-                <div class="ui header"><?php echo __("AUTRES SERVICES", 'siogivedomain') ?></div>
+                <div class="ui header"><?php echo __("SERVICES", 'siogivedomain') ?></div>
                 <div class="ui list">
                     <?php
                     $services = new WP_Query(array('post_type' => 'service', 'post_per_page' => -1, "post_status" => 'publish', 'orderby' => 'post_date', 'order' => 'ASC'));

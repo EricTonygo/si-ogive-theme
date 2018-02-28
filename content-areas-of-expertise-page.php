@@ -6,25 +6,23 @@
             <div align="center">
                 <div class="ui horizontal divider"><h2 style="text-transform: uppercase;"><?php echo __("Nos domaines de compétence") ?></h2></div>
                 <br>
-                <div id="areas_competence" class="ui two column stackable doubling grid center ">
+                <div id="areas_competence" class="ui three column stackable doubling grid center ">
                     <?php
                     $areas_expertise = new WP_Query(array('post_type' => 'area-expertise', 'post_per_page' => -1, "post_status" => 'publish', 'orderby' => 'post_date', 'order' => 'ASC'));
                     if ($areas_expertise->have_posts()) {
                         while ($areas_expertise->have_posts()): $areas_expertise->the_post()
                             ?>
                             <div class="column">
-                                <div class="ui segment">
-                                    <h2 class="ui icon header">
-                            <!--<i class="settings icon"></i>-->
+                                <div class="ui fluid card">
+                                    <a class="image" href="<?php the_permalink() ?>">
                                         <?php if (has_post_thumbnail()): ?>
-                                            <a class="ui small image" href="<?php the_permalink() ?>">
-                                                <img src="<?php the_post_thumbnail_url('full'); ?>">
-                                            </a>
+                                            <img src="<?php the_post_thumbnail_url('full'); ?>">
                                         <?php endif ?>
-                                        <div class="content content_area_expertise">
-                                            <a class="area_expertise_link" href="<?php the_permalink() ?>"><?php the_title() ?></a>
-                                        </div>
-                                    </h2>
+                                    </a>
+
+                                    <div class="content card_title">
+                                        <a class="header area_expertise_link" href="<?php the_permalink() ?>"><?php the_title() ?></a>
+                                    </div>
                                 </div>
                             </div>
                             <?php

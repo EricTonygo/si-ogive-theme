@@ -1,4 +1,4 @@
-<?php wp_reset_postdata();?>
+<?php wp_reset_postdata(); ?>
 <!-- Slider Container -->
 <!--<div id="home" class="ui container slider">
     <div class="owl-carousel" id="single-slider">
@@ -22,40 +22,31 @@
 <div id="areas_competence" class="section two">
     <div class="ui container">
         <h1 style="text-transform: uppercase;"><?php echo __("Domaines de compétence", 'siogivedomain') ?></h1>
+        <br>
         <div class="ui three column stackable doubling grid center ">
             <?php
             $areas_expertise = new WP_Query(array('post_type' => 'area-expertise', 'post_per_page' => -1, "post_status" => 'publish', 'orderby' => 'post_date', 'order' => 'ASC'));
-            if($areas_expertise->have_posts()){
-            while ($areas_expertise->have_posts()): $areas_expertise->the_post()
-                ?>
-                <div class="column">
-                    <div class="ui segment">
-                        <h2 class="ui icon header">
-                            <!--<i class="settings icon"></i>-->
-                            <?php if ( has_post_thumbnail() ): ?>
-                            <a class="ui small image" href="<?php the_permalink() ?>">
-                            <img src="<?php the_post_thumbnail_url( 'full' ); ?>">
+            if ($areas_expertise->have_posts()) {
+                while ($areas_expertise->have_posts()): $areas_expertise->the_post()
+                    ?>
+                    <div class="column">
+                        <div class="ui fluid card">
+                            <a class="image" href="<?php the_permalink() ?>">
+                                <?php if (has_post_thumbnail()): ?>
+                                    <img src="<?php the_post_thumbnail_url('full'); ?>">
+                                <?php endif ?>
                             </a>
-                            <?php endif ?>
-                            <div class="content content_area_expertise">
-                                <a class="area_expertise_link" href="<?php the_permalink() ?>"><?php the_title() ?></a>
+
+                            <div class="content card_title">
+                                <a class="header area_expertise_link" href="<?php the_permalink() ?>"><?php the_title() ?></a>
                             </div>
-                        </h2>
+                        </div>
                     </div>
-<!--                    <div class="ui centered card">
-                      <?php if ( has_post_thumbnail() ): ?>
-                      <div class="image">
-                        <img src="<?php the_post_thumbnail_url( 'full' ); ?>">
-                      </div>
-                        <?php endif ?>
-                      <div class="content content_area_expertise">
-                                <a class="area_expertise_link" href="<?php the_permalink() ?>"><?php the_title() ?></a>
-                            </div>
-                    </div>-->
-                </div>
-            <?php endwhile; 
-             wp_reset_postdata();
-            }?>            
+                    <?php
+                endwhile;
+                wp_reset_postdata();
+            }
+            ?>            
         </div>
     </div>
 </div>
@@ -65,44 +56,36 @@
         <img class="image" src="<?php echo get_template_directory_uri() ?>/assets/img/large_logo.PNG">
     </div>
 </div>
-<div class="ui hidden divider"></div>
+<!--<div class="ui hidden divider"></div>-->
 <div id="our-service" class="section two">
     <div class="ui container">
-        <h1><?php echo __("AUTRES SERVICES", 'siogivedomain') ?></h1>
+        <h1><?php echo __("SERVICES", 'siogivedomain') ?></h1>
+        <br>
         <div class="ui three column stackable doubling grid center aligned">
-            <?php            
+            <?php
             $services = new WP_Query(array('post_type' => 'service', 'post_per_page' => -1, "post_status" => 'publish', 'orderby' => 'post_date', 'order' => 'ASC'));
-            if($services->have_posts()){
-            while ($services->have_posts()): $services->the_post();
-                ?>
-                <div class="column">
-                    <div class="ui segment">
-                        <h2 class="ui icon header">
-                            <!--<i class="talk icon"></i>-->
-                            <?php if ( has_post_thumbnail() ): ?>
-                            <a class="ui small image" href="<?php the_permalink() ?>">
-                            <img src="<?php the_post_thumbnail_url( 'full' ); ?>">
+            if ($services->have_posts()) {
+                while ($services->have_posts()): $services->the_post();
+                    ?>
+                    <div class="column">
+                        <div class="ui fluid card">
+                            <a class="image" href="<?php the_permalink() ?>">
+                                <?php if (has_post_thumbnail()): ?>
+                                    <img src="<?php the_post_thumbnail_url('full'); ?>">
+                                <?php endif ?>
                             </a>
-                            <?php endif ?>
-                            <div class="content content_area_expertise">
-                                <a class="service_link" href="<?php the_permalink() ?>"><?php the_title() ?></a>
+
+                            <div class="content card_title">
+                                <a class="header area_expertise_link" href="<?php the_permalink() ?>"><?php the_title() ?></a>
                             </div>
-                        </h2>
+                        </div>                       
                     </div>
-                </div>
-<!--                <div class="ui centered card">
-                    <?php if ( has_post_thumbnail() ): ?>
-                  <div class="image">
-                    <img src="<?php the_post_thumbnail_url( 'full' ); ?>">
-                  </div>
-                    <?php endif ?>
-                  <div class="content content_area_expertise">
-                        <a class="service_link" href="<?php the_permalink() ?>"><?php the_title() ?></a>
-                    </div>
-                </div>-->
-            <?php endwhile; 
-            wp_reset_postdata();
-            }?>            
+
+                    <?php
+                endwhile;
+                wp_reset_postdata();
+            }
+            ?>            
         </div>
     </div>
 </div>

@@ -53,32 +53,7 @@
                         <?php
                         if ($topic_replies->have_posts()):
                             ?>
-                            <!--                        <div class="ui items">
-                            <?php while ($topic_replies->have_posts()): $topic_replies->the_post();
-                                ?>
-                                                                        <div class="item" align="left">
-                                                                            <div class="ui tiny image">
-                                <?php echo get_avatar(get_the_author_meta('ID'), 64); ?>
-                                                                            </div>
-                                                                            
-                                                                            <div class="content">
-                                                                                <div  class="header"><?php echo get_the_author() ?></div>
-                                                                                <div class="description" align="justify">
-                                                                                    <p><?php the_content() ?></p>
-                                                                                </div>
-                                                                                <div class="extra">
-                                                                                    <span>
-                                                                                        A répondu Il y a <?php echo "" . human_time_diff(get_the_time('U'), current_time('timestamp')); ?>
-                                                                                    </span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="ui divider"></div>
-                                <?php
-                            endwhile;
-                            wp_reset_postdata();
-                            ?>
-                                                    </div>-->
+                            
                             <?php while ($topic_replies->have_posts()): $topic_replies->the_post();
                                 ?>
                                 <div class="comment">
@@ -93,9 +68,7 @@
                                         <div class="text">
                                             <p><?php the_content() ?></p>
                                         </div>
-                                        <!--                                    <div class="actions">
-                                                                                <a class="reply">Reply</a>
-                                                                            </div>-->
+                                        
                                     </div>
                                 </div>
                                 <?php
@@ -114,15 +87,7 @@
                             </form>
                         <?php endif ?>
                     </div>
-                    <!--                    <div class="ui right floated pagination menu">
-                                            <a class="icon item">
-                                                <i class="left chevron icon"></i>
-                                            </a>
                     
-                                            <a class="icon item">
-                                                <i class="right chevron icon"></i>
-                                            </a>
-                                        </div>-->
                 </div>
             </div>
 

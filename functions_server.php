@@ -34,7 +34,7 @@ function hide_admin_bar_from_front_end(){
 add_filter( 'show_admin_bar', 'hide_admin_bar_from_front_end' );
 
 function si_ogive_scripts() {
-	wp_register_style( 'semantic_ui_css', 'https://cdn.jsdelivr.net/semantic-ui/2.2.6/semantic.min.css', array(), '2.2.6' );
+	wp_register_style( 'semantic_ui_css', 'https://cdn.jsdelivr.net/semantic-ui/2.2.10/semantic.min.css', array(), '2.2.10' );
 	wp_enqueue_style('semantic_ui_css');
         wp_register_style( 'font-awesone', '//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css');
         wp_enqueue_style('font-awesone');
@@ -42,7 +42,7 @@ function si_ogive_scripts() {
         wp_enqueue_style( 'owl.carousel.css', auto_version(wp_make_link_relative(get_template_directory_uri() . '/assets/css/owl.carousel.css' )));
         //wp_register_style( 'datetimepicker_css', get_template_directory_uri() . '/assets/css/jquery.datetimepicker.min.css' );
         wp_enqueue_script( 'jquery.min', auto_version(wp_make_link_relative(get_template_directory_uri() . '/assets/js/jquery.min.js')), array(), false, true );
-	wp_register_script( 'semantic_ui_js', 'https://cdn.jsdelivr.net/semantic-ui/2.2.6/semantic.min.js', array(), '2.2.6', true );
+	wp_register_script( 'semantic_ui_js', 'https://cdn.jsdelivr.net/semantic-ui/2.2.10/semantic.min.js', array(), '2.2.10', true );
         wp_enqueue_script('semantic_ui_js');
         wp_enqueue_script( 'owl.carousel.js', auto_version(wp_make_link_relative(get_template_directory_uri() . '/assets/js/owl.carousel.js')), array(), false, true);
         wp_enqueue_script( 'main_js', auto_version(wp_make_link_relative(get_template_directory_uri() . '/assets/js/main.js')),array(), false, true);

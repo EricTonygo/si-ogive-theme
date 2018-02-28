@@ -5,32 +5,33 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
         
-        <meta content="website" property="og:type">
-        <meta content="summary" name="twitter:card">
-        <meta content="SIOGIVE" name="author">
+        <meta name="author"content="SIOGIVE">
         <meta name="company" itemprop="name" content="SI OGIVE">
         <meta name="keywords" content="société, ingénieurie, ogive, siogive, marchés publics, solutions, experts"/>
-
         <meta name="robots" content="index, follow">
         <meta property="robots" content="index, follow">
+        <meta name="description" content="Ingénieurie des marchés publics." >
+        
+        <meta property="og:type" content="website">
         <meta property="og:site_name" content="SIOGIVE">  
-        
-        <meta content="<?php the_permalink(); ?>" property="og:url">
-        <meta content="<?php home_url(); ?>" name="identifier-url">
-        <meta content="SIOGIVE" name="copyright">
-        <meta content="<?php the_permalink(); ?>" name="twitter:url">
-        <meta content="SIOGIVE" property="og:site_name">
-        
-        <meta content="Ingénieurie des marchés publics." name="description">
-        <meta content="Ingénieurie des marchés publics." property="og:description">
-        <meta content="Ingénieurie des marchés publics." name="twitter:description">
+        <meta property="og:url" content="<?php the_permalink(); ?>">
+        <meta property="og:title" content="SIOGIVE | Société d'ingénieurie OGIVE.">
+        <meta property="og:description" content="Ingénieurie des marchés publics.">
+        <meta property="og:image" content="<?php echo get_template_directory_uri(); ?>/assets/img/siogive.png">
 
-        <meta property="og:image" content="<?php echo get_template_directory_uri(); ?>/assets/img/logo_ogive.png">
-        <meta property="twitter:image" content="<?php echo get_template_directory_uri(); ?>/assets/img/logo_ogive.png">
-        <meta content="SIOGIVE | Société d'ingénieurie OGIVE." property="og:title">
-        <meta content="SIOGIVE | Société d'ingénieurie OGIVE." name="twitter:title">
+        <meta name="twitter:card" content="summary">
+        <meta name="identifier-url" content="<?php home_url(); ?>" >
+        <meta name="copyright" content="SIOGIVE">
+        <meta name="twitter:url" content="<?php the_permalink(); ?>">
+        <meta name="twitter:title" content="SIOGIVE | Société d'ingénieurie OGIVE.">
+        <meta name="twitter:description" content="Ingénieurie des marchés publics.">
+        <meta name="twitter:image" content="<?php echo get_template_directory_uri(); ?>/assets/img/siogive.png">
         
-        <title><?php the_title() ?> - SI OGIVE</title>
+        <title><?php if (is_home()) {
+                echo __("Blog", "gpdealdomain");
+            }elseif (is_category()) {
+                echo get_category(get_query_var('cat'))->name;
+            }else { the_title(); }?> - SI OGIVE</title>
         <link rel="shortcut icon" href="/favicon.ico">
         <?php wp_head(); ?>
     </head>
@@ -118,8 +119,9 @@
                 <a href="<?php echo get_permalink(get_page_by_path(__('a-propos-de-siogive', 'siogivedomain'))) ?>" class="<?php if (is_page(__('a-propos-de-siogive', 'siogivedomain'))): ?>active<?php endif ?> item"> <?php echo __("A PROPOS", "siogivedomain"); ?> </a>
                 <a href="<?php echo get_permalink(get_page_by_path(__('notre-vision', 'siogivedomain'))) ?>" class="<?php if (is_page(__('notre-vision', 'siogivedomain'))): ?>active<?php endif ?> item"> <?php echo get_page_by_path(__('notre-vision', 'siogivedomain'))->post_title ?> </a>
                 <a href="<?php echo get_permalink(get_page_by_path(__('domaines-de-competence', 'siogivedomain'))) ?>" class="<?php if (is_page(__('domaines-de-competence', 'siogivedomain')) || is_singular('area-expertise')): ?>active<?php endif ?> item" style="text-transform: uppercase;"> <?php _e("Domaines de compétence", "siogivedomain"); ?></a>
-                <a href="<?php echo get_permalink(get_page_by_path(__('offres-demploi', 'siogivedomain'))) ?>" class="<?php if (is_page(__('offres-demploi', 'siogivedomain')) || is_category(intval(get_query_var('cat'))) || is_singular('job')): ?>active<?php endif ?> item"> <?php echo __("OFFRES D'EMPLOI", "siogivedomain"); ?>  </a>
+                <a href="<?php echo get_permalink(get_page_by_path(__('offres-demploi', 'siogivedomain'))) ?>" class="<?php if (is_page(__('offres-demploi', 'siogivedomain')) || cat_is_ancestor_of(get_category_by_slug(__('offres-d-emploi', 'booksharedomain'))->term_id, get_category(get_query_var('cat'))->term_id) || is_singular('job')): ?>active<?php endif ?> item"> <?php echo __("OFFRES D'EMPLOI", "siogivedomain"); ?>  </a>
                 <a href="<?php echo get_permalink(get_page_by_path(__('forums', 'siogivedomain'))) ?>" class="<?php if (bbp_is_forum_archive() || bbp_is_single_forum() || bbp_is_single_topic()): ?>active<?php endif ?> item"><?php echo __("FORUMS", "siogivedomain") ?></a>
+                <a href="<?php echo get_permalink(get_page_by_path(__('blog', 'siogivedomain'))) ?>" class="<?php if (is_home() || cat_is_ancestor_of(get_category_by_slug(__('actualites-conseils', 'booksharedomain'))->term_id, get_category(get_query_var('cat'))->term_id) || is_singular('post')): ?>active<?php endif ?> item"> <?php echo __("BLOG", "siogivedomain"); ?>  </a>
                 <div id="services_dropdown" class="ui dropdown <?php if (is_singular('service')): ?>active<?php endif ?> item" style="margin-left: 0;">
                     <?php  _e("SERVICES", "siogivedomain");?>
                     <i class="dropdown icon"></i>
